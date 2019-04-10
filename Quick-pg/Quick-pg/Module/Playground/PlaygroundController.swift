@@ -164,10 +164,16 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
         internalInit()
     }
 
+    private var o: NSKeyValueObservation?
+
     private func internalInit() {
-        // observeEditing()
+        observeEditing()
         setupPlaceholderLabel()
         delegate = self
+
+        o = observe(\.selectedTextRange, options: [.old, .new]) { _, change in
+            print("\(change.oldValue) => \(change.newValue)")
+        }
     }
 
     private func observeEditing() {
@@ -248,9 +254,6 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
     }
 
     @objc
-    private func handleTextChange() {}
-
-    @objc
     private func handleTextChange1() {
         guard
             let text = text,
@@ -270,8 +273,9 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
 
     enum ChangeType {
         case none
-        case append
+        case append(Int)
         case delete
+        // replace aka paste?
     }
 
     private var lastChangeType: ChangeType = .none
@@ -279,25 +283,25 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let textFieldText = textField.text
         let currentText = Backed(textFieldText)
-        defer {
-            updateLastAction(
-                range: range,
-                string: string
-            )
-        }
+        updateLastAction(range: range, string: string)
 
         // range.len == to be removed
 
         if let stringRange: Range<String.Index> = Range<String.Index>(range, in: currentText) {
             let newString = currentText.replacingCharacters(in: stringRange, with: string)
-            print("^ [\(currentText)] => [\(newString)]")
+            print("^ [\(currentText)] => [\(newString)] => \(caretPosition!)")
         }
 
         return true
     }
 
+    @objc
+    private func handleTextChange() {
+        print("text: \(text!); \(caretPosition!)")
+    }
+
     private func updateLastAction(range: NSRange, string: String) {
-        lastChangeType = range.length > 0 ? .delete : .append
+        lastChangeType = range.length > 0 ? .delete : .append(string.length)
         _ = string
     }
 
@@ -307,7 +311,6 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
         else { return }
 
         let deleteRange: NSRange = NSRange(location: caretPosition - 1, length: 1)
-
         if textField(self, shouldChangeCharactersIn: deleteRange, replacementString: String.empty) {
             super.deleteBackward()
         }
@@ -413,10 +416,14 @@ extension String {
 }
 
 extension UITextField {
-    func setCaret(at position: UITextPosition?) {
+    @discardableResult
+    func setCaret(at position: UITextPosition?) -> Bool {
         if let newCaretPosition = position {
             selectedTextRange = textRange(from: newCaretPosition, to: newCaretPosition)
+
+            return true
         }
+        return false
     }
 }
 
