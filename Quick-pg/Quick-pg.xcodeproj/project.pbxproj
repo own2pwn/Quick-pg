@@ -19,6 +19,48 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DE1DCB99225E2C7200170DDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A32B59BD213C063400DED8B4;
+			remoteInfo = CollectionKit;
+		};
+		DE1DCB9B225E2C7200170DDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A32B59BE213C063400DED8B4;
+			remoteInfo = CollectionKitTests;
+		};
+		DE1DCD13225E2CD400170DDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1D0B47C1E89C479000B0E24;
+			remoteInfo = Examples;
+		};
+		DE1DCD15225E2CD400170DDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B197CE171E8B660F004495AE;
+			remoteInfo = YetAnotherAnimationLibrary;
+		};
+		DE1DCD89225E2D0D00170DDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B1B7B04F1E7DAD1E00F2483E;
+			remoteInfo = CollectionKit;
+		};
+		DE1DCD8B225E2D1100170DDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B197CE161E8B660F004495AE;
+			remoteInfo = YetAnotherAnimationLibrary;
+		};
 		DE91A742225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
@@ -78,6 +120,8 @@
 		DE09A1E0225DEB2D00E71E6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE09A1E3225DEB2D00E71E6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE09A1E5225DEB2D00E71E6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CollectionKit.xcodeproj; sourceTree = "<group>"; };
+		DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = YetAnotherAnimationLibrary.xcodeproj; sourceTree = "<group>"; };
 		DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PinLayout.xcodeproj; sourceTree = "<group>"; };
 		DEE39E1B225E17200083406A /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		DEE39E20225E17F80083406A /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
@@ -126,6 +170,40 @@
 			path = "Quick-pg";
 			sourceTree = "<group>";
 		};
+		DE1DCAFE225E2C7200170DDD /* CollectionKit */ = {
+			isa = PBXGroup;
+			children = (
+				DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */,
+			);
+			path = CollectionKit;
+			sourceTree = "<group>";
+		};
+		DE1DCB0F225E2C7200170DDD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE1DCB9A225E2C7200170DDD /* CollectionKit.framework */,
+				DE1DCB9C225E2C7200170DDD /* CollectionKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE1DCCD3225E2CD400170DDD /* YetAnotherAnimationLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */,
+			);
+			path = YetAnotherAnimationLibrary;
+			sourceTree = "<group>";
+		};
+		DE1DCCDA225E2CD400170DDD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE1DCD14225E2CD400170DDD /* Examples.app */,
+				DE1DCD16225E2CD400170DDD /* YetAnotherAnimationLibrary.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DE91A12F225DED3D0019C8DA /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,7 +216,9 @@
 		DE91A130225DED3F0019C8DA /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				DE1DCAFE225E2C7200170DDD /* CollectionKit */,
 				DE91A5E9225DEDEC0019C8DA /* PinLayout */,
+				DE1DCCD3225E2CD400170DDD /* YetAnotherAnimationLibrary */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -213,6 +293,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				DE1DCD8C225E2D1100170DDD /* PBXTargetDependency */,
+				DE1DCD8A225E2D0D00170DDD /* PBXTargetDependency */,
 				DE91A845225DEE000019C8DA /* PBXTargetDependency */,
 			);
 			name = "Quick-pg";
@@ -248,8 +330,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = DE1DCB0F225E2C7200170DDD /* Products */;
+					ProjectRef = DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */;
+				},
+				{
 					ProductGroup = DE91A72D225DEDEC0019C8DA /* Products */;
 					ProjectRef = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+				},
+				{
+					ProductGroup = DE1DCCDA225E2CD400170DDD /* Products */;
+					ProjectRef = DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -260,6 +350,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		DE1DCB9A225E2C7200170DDD /* CollectionKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CollectionKit.framework;
+			remoteRef = DE1DCB99225E2C7200170DDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE1DCB9C225E2C7200170DDD /* CollectionKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CollectionKitTests.xctest;
+			remoteRef = DE1DCB9B225E2C7200170DDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE1DCD14225E2CD400170DDD /* Examples.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Examples.app;
+			remoteRef = DE1DCD13225E2CD400170DDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE1DCD16225E2CD400170DDD /* YetAnotherAnimationLibrary.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = YetAnotherAnimationLibrary.framework;
+			remoteRef = DE1DCD15225E2CD400170DDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		DE91A743225DEDEC0019C8DA /* PinLayout.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -334,6 +452,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DE1DCD8A225E2D0D00170DDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CollectionKit;
+			targetProxy = DE1DCD89225E2D0D00170DDD /* PBXContainerItemProxy */;
+		};
+		DE1DCD8C225E2D1100170DDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YetAnotherAnimationLibrary;
+			targetProxy = DE1DCD8B225E2D1100170DDD /* PBXContainerItemProxy */;
+		};
 		DE91A845225DEE000019C8DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "PinLayout-iOS";
