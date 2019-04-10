@@ -14,6 +14,58 @@
 		DE09A1E4225DEB2D00E71E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DE91A742225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 249EFE7A1E64FB4C00165E39;
+			remoteInfo = "PinLayout-iOS";
+		};
+		DE91A744225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DF1A5D2C2084CF9700725EF5;
+			remoteInfo = "PinLayout-macOS";
+		};
+		DE91A746225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 244DF2F81EF46C500090508B;
+			remoteInfo = "PinLayout-tvOS";
+		};
+		DE91A748225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 249EFE831E64FB4C00165E39;
+			remoteInfo = "PinLayoutTests-iOS";
+		};
+		DE91A74A225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DF1A5D1D2084C94700725EF5;
+			remoteInfo = "PinLayoutTests-macOS";
+		};
+		DE91A74C225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DFF6F9C22084DCD3004F5AED;
+			remoteInfo = "PinLayoutTests-tvOS";
+		};
+		DE91A844225DEE000019C8DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 249EFE791E64FB4C00165E39;
+			remoteInfo = "PinLayout-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		DE09A1D6225DEB2C00E71E6C /* Quick-pg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick-pg.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE09A1D9225DEB2C00E71E6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -22,6 +74,7 @@
 		DE09A1E0225DEB2D00E71E6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE09A1E3225DEB2D00E71E6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE09A1E5225DEB2D00E71E6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PinLayout.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +129,30 @@
 		DE91A130225DED3F0019C8DA /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				DE91A5E9225DEDEC0019C8DA /* PinLayout */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		DE91A5E9225DEDEC0019C8DA /* PinLayout */ = {
+			isa = PBXGroup;
+			children = (
+				DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */,
+			);
+			path = PinLayout;
+			sourceTree = "<group>";
+		};
+		DE91A72D225DEDEC0019C8DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE91A743225DEDEC0019C8DA /* PinLayout.framework */,
+				DE91A745225DEDEC0019C8DA /* PinLayout.framework */,
+				DE91A747225DEDEC0019C8DA /* PinLayout.framework */,
+				DE91A749225DEDEC0019C8DA /* PinLayoutTests-iOS.xctest */,
+				DE91A74B225DEDEC0019C8DA /* PinLayoutTests-macOS.xctest */,
+				DE91A74D225DEDEC0019C8DA /* PinLayoutTests-tvOS.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +169,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DE91A845225DEE000019C8DA /* PBXTargetDependency */,
 			);
 			name = "Quick-pg";
 			productName = "Quick-pg";
@@ -126,12 +202,63 @@
 			mainGroup = DE09A1CD225DEB2C00E71E6C;
 			productRefGroup = DE09A1D7225DEB2C00E71E6C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DE91A72D225DEDEC0019C8DA /* Products */;
+					ProjectRef = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				DE09A1D5225DEB2C00E71E6C /* Quick-pg */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DE91A743225DEDEC0019C8DA /* PinLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PinLayout.framework;
+			remoteRef = DE91A742225DEDEC0019C8DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE91A745225DEDEC0019C8DA /* PinLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PinLayout.framework;
+			remoteRef = DE91A744225DEDEC0019C8DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE91A747225DEDEC0019C8DA /* PinLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PinLayout.framework;
+			remoteRef = DE91A746225DEDEC0019C8DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE91A749225DEDEC0019C8DA /* PinLayoutTests-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "PinLayoutTests-iOS.xctest";
+			remoteRef = DE91A748225DEDEC0019C8DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE91A74B225DEDEC0019C8DA /* PinLayoutTests-macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "PinLayoutTests-macOS.xctest";
+			remoteRef = DE91A74A225DEDEC0019C8DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE91A74D225DEDEC0019C8DA /* PinLayoutTests-tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "PinLayoutTests-tvOS.xctest";
+			remoteRef = DE91A74C225DEDEC0019C8DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DE09A1D4225DEB2C00E71E6C /* Resources */ = {
@@ -157,6 +284,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE91A845225DEE000019C8DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "PinLayout-iOS";
+			targetProxy = DE91A844225DEE000019C8DA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DE09A1DD225DEB2C00E71E6C /* Main.storyboard */ = {
