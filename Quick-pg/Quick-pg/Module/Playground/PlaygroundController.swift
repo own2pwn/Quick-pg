@@ -115,7 +115,7 @@ open class EPTextField: UITextField {
     }
 }
 
-final class LivePlaceholderTextField: EPTextField {
+final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
     // MARK: - Members
 
     public var placeholderLabelText: String?
@@ -165,8 +165,9 @@ final class LivePlaceholderTextField: EPTextField {
     }
 
     private func internalInit() {
-        observeEditing()
+        // observeEditing()
         setupPlaceholderLabel()
+        delegate = self
     }
 
     private func observeEditing() {
@@ -247,7 +248,10 @@ final class LivePlaceholderTextField: EPTextField {
     }
 
     @objc
-    private func handleTextChange() {
+    private func handleTextChange() {}
+
+    @objc
+    private func handleTextChange1() {
         guard
             let text = text,
             let placeholder = placeholder,
@@ -260,6 +264,53 @@ final class LivePlaceholderTextField: EPTextField {
         let newTextLength: Int = Backed(previousTextString?.length)
         let newCaretPosition: UITextPosition? = position(from: beginningOfDocument, offset: newTextLength)
         setCaret(at: newCaretPosition)
+    }
+
+    // MARK: - Types
+
+    enum ChangeType {
+        case none
+        case append
+        case delete
+    }
+
+    private var lastChangeType: ChangeType = .none
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let textFieldText = textField.text
+        let currentText = Backed(textFieldText)
+        defer {
+            updateLastAction(
+                range: range,
+                string: string
+            )
+        }
+
+        // range.len == to be removed
+
+        if let stringRange: Range<String.Index> = Range<String.Index>(range, in: currentText) {
+            let newString = currentText.replacingCharacters(in: stringRange, with: string)
+            print("^ [\(currentText)] => [\(newString)]")
+        }
+
+        return true
+    }
+
+    private func updateLastAction(range: NSRange, string: String) {
+        lastChangeType = range.length > 0 ? .delete : .append
+        _ = string
+    }
+
+    override func deleteBackward() {
+        guard
+            let caretPosition = caretPosition
+        else { return }
+
+        let deleteRange: NSRange = NSRange(location: caretPosition - 1, length: 1)
+
+        if textField(self, shouldChangeCharactersIn: deleteRange, replacementString: String.empty) {
+            super.deleteBackward()
+        }
     }
 }
 
@@ -400,4 +451,25 @@ func Backed<T: Fallbacked>(_ optional: T?) -> T {
 
 extension Int: Fallbacked {
     static let defaultValue: Int = 0
+}
+
+extension String: Fallbacked {
+    static let defaultValue: String = ""
+}
+
+extension UITextField {
+    var caretPosition: Int? {
+        guard
+            let selectedRange = selectedTextRange
+        else { return nil }
+
+        return offset(
+            from: beginningOfDocument,
+            to: selectedRange.start
+        )
+    }
+}
+
+extension String {
+    static let empty: String = ""
 }
