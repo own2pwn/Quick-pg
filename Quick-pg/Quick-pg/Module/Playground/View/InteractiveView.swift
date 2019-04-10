@@ -8,18 +8,22 @@
 
 import UIKit
 
-protocol InteractiveViewOut: class {
+protocol QuickView: class {
+    var viewType: QuickViewType { get }
+}
+
+protocol QuickViewOut: class {
     var tapSignal: Signal { get }
 }
 
-open class InteractiveView: UIView, InteractiveViewOut {
+open class InteractiveView: UIView, QuickView, QuickViewOut {
     // MARK: - Output
 
     lazy var tapSignal = Signal()
 
     // MARK: - Members
 
-    public let viewType: InteractiveViewType
+    public let viewType: QuickViewType
 
     // MARK: - Init
 
@@ -27,7 +31,7 @@ open class InteractiveView: UIView, InteractiveViewOut {
         self.init(viewType: .plain)
     }
 
-    public init(viewType: InteractiveViewType) {
+    public init(viewType: QuickViewType) {
         self.viewType = viewType
         super.init(frame: .zero)
 

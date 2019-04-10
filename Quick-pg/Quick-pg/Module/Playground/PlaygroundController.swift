@@ -15,9 +15,11 @@ final class Relay<T> {
 
 typealias TapHandler = () -> Void
 
-public enum InteractiveViewType {
+public enum QuickViewType {
     case plain
 }
+
+final class PlaygroundViewHolder {}
 
 final class PlaygroundController: UIViewController {
     // MARK: - Views
@@ -30,6 +32,22 @@ final class PlaygroundController: UIViewController {
         return view
     }()
 
+    private let sidePanelView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.1921568627, green: 0.2352941176, blue: 0.3137254902, alpha: 1)
+        view.layer.cornerRadius = 8
+
+        return view
+    }()
+
+    // MARK: - Members
+
+    private let viewModel: IPlaygroundViewModel = {
+        let model = PlaygroundViewModel()
+
+        return model
+    }()
+
     // MARK: - Overrides
 
     override func viewDidLoad() {
@@ -40,7 +58,8 @@ final class PlaygroundController: UIViewController {
     }
 
     private func setup() {
-        [clickyView].forEach(view.addSubview)
+        [clickyView, sidePanelView]
+            .forEach(view.addSubview)
     }
 
     // MARK: - Layout
@@ -52,6 +71,13 @@ final class PlaygroundController: UIViewController {
             .height(216)
             .width(272)
             .center()
+            .marginHorizontal(-64)
+
+        sidePanelView.pin
+            .vertically(64)
+            .width(248)
+            .end(view.pin.safeArea)
+            .marginEnd(24)
     }
 }
 
