@@ -54,6 +54,7 @@
 		DE09A1D8225DEB2C00E71E6C /* Quick-pg */ = {
 			isa = PBXGroup;
 			children = (
+				DE91A12F225DED3D0019C8DA /* src */,
 				DE09A1D9225DEB2C00E71E6C /* AppDelegate.swift */,
 				DE09A1DB225DEB2C00E71E6C /* PlaygroundController.swift */,
 				DE09A1DD225DEB2C00E71E6C /* Main.storyboard */,
@@ -62,6 +63,21 @@
 				DE09A1E5225DEB2D00E71E6C /* Info.plist */,
 			);
 			path = "Quick-pg";
+			sourceTree = "<group>";
+		};
+		DE91A12F225DED3D0019C8DA /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DE91A130225DED3F0019C8DA /* lib */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		DE91A130225DED3F0019C8DA /* lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
