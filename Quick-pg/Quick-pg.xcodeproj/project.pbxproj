@@ -12,6 +12,9 @@
 		DE09A1DF225DEB2C00E71E6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1DD225DEB2C00E71E6C /* Main.storyboard */; };
 		DE09A1E1225DEB2D00E71E6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E0225DEB2D00E71E6C /* Assets.xcassets */; };
 		DE09A1E4225DEB2D00E71E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */; };
+		DEE39E1C225E17200083406A /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E1B225E17200083406A /* Signal.swift */; };
+		DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E20225E17F80083406A /* InteractiveView.swift */; };
+		DEE39E23225E18320083406A /* SelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E22225E18320083406A /* SelectableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		DE09A1E3225DEB2D00E71E6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE09A1E5225DEB2D00E71E6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PinLayout.xcodeproj; sourceTree = "<group>"; };
+		DEE39E1B225E17200083406A /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
+		DEE39E20225E17F80083406A /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
+		DEE39E22225E18320083406A /* SelectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +113,9 @@
 		DE09A1D8225DEB2C00E71E6C /* Quick-pg */ = {
 			isa = PBXGroup;
 			children = (
+				DEE39E1D225E17DD0083406A /* Module */,
 				DE91A12F225DED3D0019C8DA /* src */,
 				DE09A1D9225DEB2C00E71E6C /* AppDelegate.swift */,
-				DE09A1DB225DEB2C00E71E6C /* PlaygroundController.swift */,
 				DE09A1DD225DEB2C00E71E6C /* Main.storyboard */,
 				DE09A1E0225DEB2D00E71E6C /* Assets.xcassets */,
 				DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */,
@@ -121,6 +127,7 @@
 		DE91A12F225DED3D0019C8DA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DEE39E15225E17190083406A /* Foundation */,
 				DE91A130225DED3F0019C8DA /* lib */,
 			);
 			path = src;
@@ -153,6 +160,40 @@
 				DE91A74D225DEDEC0019C8DA /* PinLayoutTests-tvOS.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DEE39E15225E17190083406A /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				DEE39E1B225E17200083406A /* Signal.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		DEE39E1D225E17DD0083406A /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				DEE39E1E225E17E10083406A /* Playground */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		DEE39E1E225E17E10083406A /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				DEE39E1F225E17F30083406A /* View */,
+				DE09A1DB225DEB2C00E71E6C /* PlaygroundController.swift */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
+		DEE39E1F225E17F30083406A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DEE39E22225E18320083406A /* SelectableView.swift */,
+				DEE39E20225E17F80083406A /* InteractiveView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +320,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
+				DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */,
+				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
+				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
