@@ -94,6 +94,8 @@ open class EPTextField: UITextField {
 
     public var contentInsets: UIEdgeInsets = .zero
 
+    public var leftViewInsets: UIEdgeInsets = .zero
+
     // MARK: - Insets
 
     open override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -103,23 +105,51 @@ open class EPTextField: UITextField {
     open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: contentInsets)
     }
+
+//    open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+//        return bounds.inset(by: contentInsets)
+//    }
+
+    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: leftViewInsets)
+    }
 }
 
 final class LivePlaceholderTextField: EPTextField {
     // MARK: - Members
 
+    public var placeholderLabelText: String?
+
     public var placeholderTextColor: UIColor?
 
     public var placeholderFont: UIFont?
 
-    public var placeholderLength: Int = 0
+    // MARK: - Views
+
+    private let placeholderLabel: UILabel = {
+        let label = UILabel()
+
+        return label
+    }()
 
     // MARK: - Logic
+
+    private var previousTextString: NSAttributedString?
+
+    private var previousPlaceholderString: NSAttributedString?
+
+    private var previousFullLength: Int {
+        let textLen: Int = Fallback(to: 0, previousTextString?.length)
+        let placeholderLen: Int = Fallback(to: 0, previousPlaceholderString?.length)
+
+        return textLen + placeholderLen
+    }
 
     // MARK: - Interface
 
     func update() {
         updatePlaceholder()
+        updatePlaceholderLabel()
     }
 
     // MARK: - Init
@@ -135,10 +165,20 @@ final class LivePlaceholderTextField: EPTextField {
     }
 
     private func internalInit() {
+        observeEditing()
+        setupPlaceholderLabel()
+    }
+
+    private func observeEditing() {
         addTarget(
             self, action: #selector(handleTextChange),
             for: UIControl.Event.editingChanged
         )
+    }
+
+    private func setupPlaceholderLabel() {
+        leftView = placeholderLabel
+        leftViewMode = .always
     }
 
     // MARK: - Helpers
@@ -149,6 +189,14 @@ final class LivePlaceholderTextField: EPTextField {
         else { return }
 
         attributedPlaceholder = getCustomPlaceholder(for: text)
+    }
+
+    private func updatePlaceholderLabel() {
+        placeholderLabel.text = placeholderLabelText
+        placeholderLabel.font = placeholderFont ?? font
+        placeholderLabel.textColor = placeholderTextColor ?? textColor
+
+        placeholderLabel.sizeToFit()
     }
 
     private func getCustomPlaceholder(for text: String) -> NSAttributedString {
@@ -177,18 +225,23 @@ final class LivePlaceholderTextField: EPTextField {
 
     private func getTextWithPlaceholder(for text: String, placeholder: String) -> NSAttributedString {
         let textString: NSAttributedString = getCustomText(for: text)
+        previousTextString = textString
 
         let placeholderRange: NSRange = NSRange(
-            location: text.count,
-            length: placeholder.count - text.count
+            location: text.length,
+            length: placeholder.length - text.length
         )
 
         let placeholderString: NSAttributedString =
             getCustomPlaceholder(for: placeholder)
             .attributedSubstring(from: placeholderRange)
 
+        previousPlaceholderString = placeholderString
+
         let resultString = NSMutableAttributedString(attributedString: textString)
         resultString.append(placeholderString)
+
+        print("^ tl: \(text.length)")
 
         return resultString
     }
@@ -198,10 +251,15 @@ final class LivePlaceholderTextField: EPTextField {
         guard
             let text = text,
             let placeholder = placeholder,
-            text.count < placeholderLength
+            Backed(previousTextString?.length) < placeholder.length
         else { return }
 
+        let l = previousFullLength
         attributedText = getTextWithPlaceholder(for: text, placeholder: placeholder)
+
+        let newTextLength: Int = Backed(previousTextString?.length)
+        let newCaretPosition: UITextPosition? = position(from: beginningOfDocument, offset: newTextLength)
+        setCaret(at: newCaretPosition)
     }
 }
 
@@ -221,15 +279,19 @@ final class PlaygroundSidePanelView: UIView {
     private let dummyView: UIView = {
         let textField = LivePlaceholderTextField()
         textField.font = UIFont.systemFont(ofSize: 16)
-        textField.autocorrectionType = .no
 
-        textField.placeholder = "#FAFBFC"
-        textField.placeholderLength = 6
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .allCharacters
+
+        textField.placeholderLabelText = "#"
+        textField.placeholder = "FAFBFC"
 
         textField.placeholderTextColor = #colorLiteral(red: 0.2078431373, green: 0.2470588235, blue: 0.3333333333, alpha: 1)
         textField.backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.5137254902, blue: 0.5529411765, alpha: 1)
 
-        textField.contentInsets.setHorizontal(16)
+        textField.leftViewInsets.left = 8
+        textField.contentInsets.setHorizontal(20)
+
         textField.update()
 
         return textField
@@ -290,4 +352,52 @@ extension UIEdgeInsets {
         left = value
         right = value
     }
+}
+
+extension String {
+    @inlinable
+    var length: Int {
+        return count
+    }
+}
+
+extension UITextField {
+    func setCaret(at position: UITextPosition?) {
+        if let newCaretPosition = position {
+            selectedTextRange = textRange(from: newCaretPosition, to: newCaretPosition)
+        }
+    }
+}
+
+extension Optional {
+    func or<T>(_ fallback: T) -> T {
+        if let boxed = self as? T {
+            return boxed
+        }
+        return fallback
+    }
+}
+
+protocol Fallbacked {
+    associatedtype T
+
+    static var defaultValue: T { get }
+}
+
+func Fallback<T>(to value: T, _ optional: T?) -> T {
+    if let boxed = optional {
+        return boxed
+    }
+    return value
+}
+
+func Backed<T: Fallbacked>(_ optional: T?) -> T {
+    if let boxed = optional {
+        return boxed
+    }
+    return unsafeBitCast(T.defaultValue, to: T.self)
+}
+
+extension Int: Fallbacked {
+    static let defaultValue: Int = 0
 }
