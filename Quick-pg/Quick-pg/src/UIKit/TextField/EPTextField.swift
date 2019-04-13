@@ -24,7 +24,7 @@ open class EPTextField: UITextField {
 
     public var contentInsets: UIEdgeInsets = .zero
 
-    public var leftViewInsets: UIEdgeInsets = .zero
+    public var leftViewInsetFromLeft: CGFloat = 0
 
     // MARK: - Validators
 
@@ -77,20 +77,31 @@ open class EPTextField: UITextField {
     // MARK: - Insets
 
     open override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: contentInsets)
+        return super.textRect(forBounds: bounds).inset(by: contentInsets)
     }
 
     open override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: contentInsets)
+        return super.editingRect(forBounds: bounds).inset(by: contentInsets)
     }
-
-    //    open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-    //        return bounds.inset(by: contentInsets)
-    //    }
 
     open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: leftViewInsets)
+        var desiredRect: CGRect = super.leftViewRect(forBounds: bounds)
+        desiredRect.origin.x = leftViewInsetFromLeft
+
+        return desiredRect
     }
 
-    // MARK: - Helpers
+//    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+//        var desiredRect: CGRect = super.leftViewRect(forBounds: bounds)
+//
+//        if let view = leftView {
+//            view.sizeToFit()
+//            view.layoutIfNeeded()
+//
+//            desiredRect.size = view.frame.size
+//            desiredRect.origin.x = leftViewInsetFromLeft
+//        }
+//
+//        return desiredRect
+//    }
 }

@@ -27,8 +27,8 @@ final class PlaygroundController: UIViewController {
         return view
     }()
 
-    private lazy var sidePanelView: PlaygroundSidePanelView = {
-        let view = PlaygroundSidePanelView(
+    private lazy var sidePanelView: RightSidePanelView = {
+        let view = RightSidePanelView(
             viewModel: viewModel.rightSidePanelModel
         )
         view.backgroundColor = #colorLiteral(red: 0.1921568627, green: 0.2352941176, blue: 0.3137254902, alpha: 1)

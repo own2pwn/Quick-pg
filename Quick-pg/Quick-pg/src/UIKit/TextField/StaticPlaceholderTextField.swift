@@ -17,10 +17,13 @@ open class StaticPlaceholderTextField: EPTextField {
 
     public var placeholderFont: UIFont?
 
+    public var insetFromLeftView: CGFloat = 4
+
     // MARK: - Views
 
     private let placeholderLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
 
         return label
     }()
@@ -67,8 +70,6 @@ open class StaticPlaceholderTextField: EPTextField {
         placeholderLabel.text = placeholderLabelText
         placeholderLabel.font = placeholderFont ?? font
         placeholderLabel.textColor = placeholderTextColor ?? textColor
-
-        placeholderLabel.sizeToFit()
     }
 
     // MARK: - Placeholder
@@ -83,5 +84,39 @@ open class StaticPlaceholderTextField: EPTextField {
             string: text,
             attributes: placeholderAttributes
         )
+    }
+
+    // MARK: - Overrides
+
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
+        var desiredBounds: CGRect = super.textRect(forBounds: bounds)
+        desiredBounds.origin.x = insetFromLeftView + placeholderLabel.frame.maxX
+
+        return desiredBounds
+    }
+
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        var desiredBounds: CGRect = super.editingRect(forBounds: bounds)
+        desiredBounds.origin.x = insetFromLeftView + placeholderLabel.frame.maxX
+
+        return desiredBounds
+    }
+
+//    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+//        var desiredRect: CGRect = super.leftViewRect(forBounds: bounds)
+//
+//        let desiredCenter: CGPoint = CGPoint(x: desiredRect.midX, y: desiredRect.midY)
+//        let actualCenter: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
+//
+//        let dyCenter: CGFloat = ceil(desiredCenter.y) - ceil(actualCenter.y)
+//        desiredRect.origin.y = ceil(actualCenter.y) - dyCenter
+//
+//        return desiredRect
+//    }
+
+    open override func layoutSubviews() {
+        placeholderLabel.sizeToFit()
+
+        super.layoutSubviews()
     }
 }

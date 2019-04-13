@@ -14,12 +14,15 @@
 		DE09A1E4225DEB2D00E71E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */; };
 		DE39FFD72262711D006C64DB /* InputValidatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFD62262711D006C64DB /* InputValidatorTextField.swift */; };
 		DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFDF22627201006C64DB /* StaticPlaceholderValidatorTextField.swift */; };
+		DE39FFE3226272B4006C64DB /* EPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFE2226272B4006C64DB /* EPView.swift */; };
+		DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFEB22627306006C64DB /* UIColor+Hex.swift */; };
+		DE39FFEF226273D8006C64DB /* SidePanelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */; };
 		DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */; };
 		DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16722620B4300FC61DB /* Relay<T>.swift */; };
 		DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */; };
 		DE60B16C22620B6400FC61DB /* EPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16B22620B6400FC61DB /* EPTextField.swift */; };
 		DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16D22620B7200FC61DB /* StaticPlaceholderTextField.swift */; };
-		DE60B17022620B8500FC61DB /* PlaygroundSidePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16F22620B8500FC61DB /* PlaygroundSidePanelView.swift */; };
+		DE60B17022620B8500FC61DB /* RightSidePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16F22620B8500FC61DB /* RightSidePanelView.swift */; };
 		DE60B17222620B9800FC61DB /* Optional+Fallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17122620B9800FC61DB /* Optional+Fallback.swift */; };
 		DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */; };
 		DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17522620BBE00FC61DB /* String+Validators.swift */; };
@@ -137,12 +140,15 @@
 		DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = YetAnotherAnimationLibrary.xcodeproj; sourceTree = "<group>"; };
 		DE39FFD62262711D006C64DB /* InputValidatorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidatorTextField.swift; sourceTree = "<group>"; };
 		DE39FFDF22627201006C64DB /* StaticPlaceholderValidatorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticPlaceholderValidatorTextField.swift; sourceTree = "<group>"; };
+		DE39FFE2226272B4006C64DB /* EPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPView.swift; sourceTree = "<group>"; };
+		DE39FFEB22627306006C64DB /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelTextField.swift; sourceTree = "<group>"; };
 		DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePlaceholderTextField.swift; sourceTree = "<group>"; };
 		DE60B16722620B4300FC61DB /* Relay<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Relay<T>.swift"; sourceTree = "<group>"; };
 		DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosureBox<T>.swift"; sourceTree = "<group>"; };
 		DE60B16B22620B6400FC61DB /* EPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPTextField.swift; sourceTree = "<group>"; };
 		DE60B16D22620B7200FC61DB /* StaticPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticPlaceholderTextField.swift; sourceTree = "<group>"; };
-		DE60B16F22620B8500FC61DB /* PlaygroundSidePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundSidePanelView.swift; sourceTree = "<group>"; };
+		DE60B16F22620B8500FC61DB /* RightSidePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSidePanelView.swift; sourceTree = "<group>"; };
 		DE60B17122620B9800FC61DB /* Optional+Fallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Fallback.swift"; sourceTree = "<group>"; };
 		DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPlaceholderTextField.swift; sourceTree = "<group>"; };
 		DE60B17522620BBE00FC61DB /* String+Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validators.swift"; sourceTree = "<group>"; };
@@ -231,6 +237,83 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DE39FFE1226272AC006C64DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE39FFED22627339006C64DB /* Interaction */,
+				DE39FFE2226272B4006C64DB /* EPView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE39FFE4226272C4006C64DB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE39FFE6226272DC006C64DB /* UIKit */,
+				DE39FFE5226272CF006C64DB /* Foundation */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE39FFE5226272CF006C64DB /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				DE39FFEA226272E8006C64DB /* Collection */,
+				DE39FFE9226272E6006C64DB /* String */,
+				DE39FFE8226272E2006C64DB /* Optional */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		DE39FFE6226272DC006C64DB /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				DE39FFE7226272DE006C64DB /* Color */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		DE39FFE7226272DE006C64DB /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				DE39FFEB22627306006C64DB /* UIColor+Hex.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		DE39FFE8226272E2006C64DB /* Optional */ = {
+			isa = PBXGroup;
+			children = (
+				DE60B17122620B9800FC61DB /* Optional+Fallback.swift */,
+			);
+			path = Optional;
+			sourceTree = "<group>";
+		};
+		DE39FFE9226272E6006C64DB /* String */ = {
+			isa = PBXGroup;
+			children = (
+				DE60B17522620BBE00FC61DB /* String+Validators.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		DE39FFEA226272E8006C64DB /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				DE60B17722620BCE00FC61DB /* Array+Validators.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		DE39FFED22627339006C64DB /* Interaction */ = {
+			isa = PBXGroup;
+			children = (
+				DEE39E22225E18320083406A /* SelectableView.swift */,
+				DEE39E20225E17F80083406A /* InteractiveView.swift */,
+			);
+			path = Interaction;
+			sourceTree = "<group>";
+		};
 		DE60B16322620B1700FC61DB /* tmp */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +334,7 @@
 		DE60B16522620B2000FC61DB /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				DE39FFE1226272AC006C64DB /* View */,
 				DE60B16622620B2200FC61DB /* TextField */,
 			);
 			path = UIKit;
@@ -270,6 +354,7 @@
 		DE91A12F225DED3D0019C8DA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DE39FFE4226272C4006C64DB /* Extension */,
 				DE60B16522620B2000FC61DB /* UIKit */,
 				DEE39E15225E17190083406A /* Foundation */,
 				DE91A130225DED3F0019C8DA /* lib */,
@@ -322,9 +407,6 @@
 			children = (
 				DEE39E1B225E17200083406A /* Signal.swift */,
 				DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */,
-				DE60B17122620B9800FC61DB /* Optional+Fallback.swift */,
-				DE60B17522620BBE00FC61DB /* String+Validators.swift */,
-				DE60B17722620BCE00FC61DB /* Array+Validators.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -350,10 +432,9 @@
 		DEE39E1F225E17F30083406A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DEE39E22225E18320083406A /* SelectableView.swift */,
-				DEE39E20225E17F80083406A /* InteractiveView.swift */,
-				DE60B16F22620B8500FC61DB /* PlaygroundSidePanelView.swift */,
+				DE60B16F22620B8500FC61DB /* RightSidePanelView.swift */,
 				DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */,
+				DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -519,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */,
 				DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */,
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
 				DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */,
@@ -526,10 +608,12 @@
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
+				DE39FFE3226272B4006C64DB /* EPView.swift in Sources */,
 				DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */,
 				DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */,
-				DE60B17022620B8500FC61DB /* PlaygroundSidePanelView.swift in Sources */,
+				DE60B17022620B8500FC61DB /* RightSidePanelView.swift in Sources */,
 				DE60B16C22620B6400FC61DB /* EPTextField.swift in Sources */,
+				DE39FFEF226273D8006C64DB /* SidePanelTextField.swift in Sources */,
 				DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
