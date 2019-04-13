@@ -13,6 +13,15 @@
 		DE09A1E1225DEB2D00E71E6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E0225DEB2D00E71E6C /* Assets.xcassets */; };
 		DE09A1E4225DEB2D00E71E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */; };
 		DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */; };
+		DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16722620B4300FC61DB /* Relay<T>.swift */; };
+		DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */; };
+		DE60B16C22620B6400FC61DB /* EPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16B22620B6400FC61DB /* EPTextField.swift */; };
+		DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16D22620B7200FC61DB /* StaticPlaceholderTextField.swift */; };
+		DE60B17022620B8500FC61DB /* PlaygroundSidePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16F22620B8500FC61DB /* PlaygroundSidePanelView.swift */; };
+		DE60B17222620B9800FC61DB /* Optional+Fallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17122620B9800FC61DB /* Optional+Fallback.swift */; };
+		DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */; };
+		DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17522620BBE00FC61DB /* String+Validators.swift */; };
+		DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17722620BCE00FC61DB /* Array+Validators.swift */; };
 		DEE39E1C225E17200083406A /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E1B225E17200083406A /* Signal.swift */; };
 		DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E20225E17F80083406A /* InteractiveView.swift */; };
 		DEE39E23225E18320083406A /* SelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E22225E18320083406A /* SelectableView.swift */; };
@@ -124,6 +133,15 @@
 		DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CollectionKit.xcodeproj; sourceTree = "<group>"; };
 		DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = YetAnotherAnimationLibrary.xcodeproj; sourceTree = "<group>"; };
 		DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePlaceholderTextField.swift; sourceTree = "<group>"; };
+		DE60B16722620B4300FC61DB /* Relay<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Relay<T>.swift"; sourceTree = "<group>"; };
+		DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosureBox<T>.swift"; sourceTree = "<group>"; };
+		DE60B16B22620B6400FC61DB /* EPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPTextField.swift; sourceTree = "<group>"; };
+		DE60B16D22620B7200FC61DB /* StaticPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticPlaceholderTextField.swift; sourceTree = "<group>"; };
+		DE60B16F22620B8500FC61DB /* PlaygroundSidePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundSidePanelView.swift; sourceTree = "<group>"; };
+		DE60B17122620B9800FC61DB /* Optional+Fallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Fallback.swift"; sourceTree = "<group>"; };
+		DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPlaceholderTextField.swift; sourceTree = "<group>"; };
+		DE60B17522620BBE00FC61DB /* String+Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validators.swift"; sourceTree = "<group>"; };
+		DE60B17722620BCE00FC61DB /* Array+Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Validators.swift"; sourceTree = "<group>"; };
 		DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PinLayout.xcodeproj; sourceTree = "<group>"; };
 		DEE39E1B225E17200083406A /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		DEE39E20225E17F80083406A /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
@@ -161,6 +179,7 @@
 		DE09A1D8225DEB2C00E71E6C /* Quick-pg */ = {
 			isa = PBXGroup;
 			children = (
+				DE60B16322620B1700FC61DB /* tmp */,
 				DEE39E1D225E17DD0083406A /* Module */,
 				DE91A12F225DED3D0019C8DA /* src */,
 				DE09A1D9225DEB2C00E71E6C /* AppDelegate.swift */,
@@ -206,12 +225,46 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DE60B16322620B1700FC61DB /* tmp */ = {
+			isa = PBXGroup;
+			children = (
+				DE60B16422620B1B00FC61DB /* View */,
+			);
+			path = tmp;
+			sourceTree = "<group>";
+		};
+		DE60B16422620B1B00FC61DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */,
+				DE60B16722620B4300FC61DB /* Relay<T>.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE60B16522620B2000FC61DB /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				DE60B16622620B2200FC61DB /* TextField */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		DE60B16622620B2200FC61DB /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				DE60B16B22620B6400FC61DB /* EPTextField.swift */,
+				DE60B16D22620B7200FC61DB /* StaticPlaceholderTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
 		DE91A12F225DED3D0019C8DA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DE60B16522620B2000FC61DB /* UIKit */,
 				DEE39E15225E17190083406A /* Foundation */,
 				DE91A130225DED3F0019C8DA /* lib */,
-				DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -251,6 +304,10 @@
 			isa = PBXGroup;
 			children = (
 				DEE39E1B225E17200083406A /* Signal.swift */,
+				DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */,
+				DE60B17122620B9800FC61DB /* Optional+Fallback.swift */,
+				DE60B17522620BBE00FC61DB /* String+Validators.swift */,
+				DE60B17722620BCE00FC61DB /* Array+Validators.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -278,6 +335,8 @@
 			children = (
 				DEE39E22225E18320083406A /* SelectableView.swift */,
 				DEE39E20225E17F80083406A /* InteractiveView.swift */,
+				DE60B16F22620B8500FC61DB /* PlaygroundSidePanelView.swift */,
+				DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,13 +502,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */,
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
 				DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */,
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
+				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
+				DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */,
+				DE60B17022620B8500FC61DB /* PlaygroundSidePanelView.swift in Sources */,
+				DE60B16C22620B6400FC61DB /* EPTextField.swift in Sources */,
+				DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
 				DEE39E25225E1E540083406A /* PlaygroundViewModel.swift in Sources */,
+				DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */,
+				DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */,
+				DE60B17222620B9800FC61DB /* Optional+Fallback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
