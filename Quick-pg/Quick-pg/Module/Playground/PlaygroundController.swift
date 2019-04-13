@@ -89,12 +89,84 @@ extension Bool {
     }
 }
 
+public struct ClosureBox<T> {
+    let closure: T
+    let uuid: String = UUID().uuidString
+}
+
+extension ClosureBox: Hashable {
+    public static func == (lhs: ClosureBox<T>, rhs: ClosureBox<T>) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        return uuid.hash(into: &hasher)
+    }
+}
+
+// TODO: red color if wrong, etc
 open class EPTextField: UITextField {
+    // MARK: - Types
+
+    public typealias ValidatorType = ((String) -> Bool)
+
+    public typealias Validator = ClosureBox<ValidatorType>
+
+    // MARK: - Output
+
+    open var onValidValueEntered: ((String) -> Void)?
+
     // MARK: - Members
 
     public var contentInsets: UIEdgeInsets = .zero
 
     public var leftViewInsets: UIEdgeInsets = .zero
+
+    // MARK: - Validators
+
+    open var validators = Set<Validator>()
+
+    open func add(validator: Validator) {
+        validators.insert(validator)
+    }
+
+    open func remove(validator: Validator) {
+        validators.remove(validator)
+    }
+
+    // MARK: - Init
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        internalInit()
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        internalInit()
+    }
+
+    private func internalInit() {
+        addTarget(
+            self,
+            action: #selector(handleTypedText),
+            for: UIControl.Event.editingDidEnd
+        )
+    }
+
+    @objc
+    private func handleTypedText() {
+        if let textValue: String = text {
+            let allValid = validators
+                .map { $0.closure }
+                .map { $0(textValue) }
+                .allValid()
+
+            if allValid {
+                onValidValueEntered?(textValue)
+            }
+        }
+    }
 
     // MARK: - Insets
 
@@ -113,6 +185,8 @@ open class EPTextField: UITextField {
     open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: leftViewInsets)
     }
+
+    // MARK: - Helpers
 }
 
 open class StaticPlaceholderTextField: EPTextField {
@@ -249,7 +323,7 @@ final class PlaygroundSidePanelView: UIView {
             g_CustomKeyboardAllowed = true
         }
 
-        backgroundColorCell.onValidColorInput = { text in
+        backgroundColorCell.onValidValueEntered = { text in
             print("in: \(text)")
         }
 
@@ -389,8 +463,6 @@ final class ColorPlaceholderTextField: StaticPlaceholderTextField, UITextFieldDe
 
     var onWantResignFirstResponder: (() -> Void)?
 
-    var onValidColorInput: ((String) -> Void)?
-
     // MARK: - Overrides
 
     override var canBecomeFirstResponder: Bool {
@@ -434,19 +506,7 @@ final class ColorPlaceholderTextField: StaticPlaceholderTextField, UITextFieldDe
 
         delegate = self
 
-        addTarget(
-            self,
-            action: #selector(handleTypedText),
-            for: UIControl.Event.editingDidEnd
-        )
-    }
-
-    @objc
-    private func handleTypedText() {
-        let colorValue: String = text.unsafelyUnwrapped
-        if checkTextIsColor(colorValue) {
-            onValidColorInput?(colorValue)
-        }
+        add(validator: EPTextField.Validator(closure: checkTextIsColor))
     }
 
     // MARK: - Editing
@@ -505,5 +565,43 @@ extension String {
         let upper = index(startIndex, offsetBy: range.upperBound)
 
         return String(self[lower ... upper])
+    }
+}
+
+extension Array where Element == Bool {
+    func allValid() -> Bool {
+        guard !isEmpty else {
+            return false
+        }
+
+        let setValue = Set<Bool>(self)
+
+        return !setValue.contains(false)
+    }
+
+    func allInvalid() -> Bool {
+        guard !isEmpty else {
+            return false
+        }
+
+        let setValue = Set<Bool>(self)
+
+        return !setValue.contains(true)
+    }
+
+    func hasInvalid() -> Bool {
+        guard !isEmpty else {
+            return false
+        }
+
+        return !allValid()
+    }
+
+    func hasValid() -> Bool {
+        guard !isEmpty else {
+            return false
+        }
+
+        return !allInvalid()
     }
 }
