@@ -11,7 +11,9 @@ import Foundation
 extension String {
     var isHexOnly: Bool {
         let disallowedChars: CharacterSet =
-            CharacterSet(charactersIn: "A" ... "F").inverted
+            CharacterSet(charactersIn: "A" ... "F")
+            .union(CharacterSet(charactersIn: "0" ... "9"))
+            .inverted
 
         return uppercased().rangeOfCharacter(from: disallowedChars) == nil
     }

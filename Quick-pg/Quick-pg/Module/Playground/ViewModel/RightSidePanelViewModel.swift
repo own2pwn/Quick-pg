@@ -8,8 +8,13 @@
 
 import UIKit
 
+enum InteractionType {
+    case setBackground(hex: String)
+}
+
 protocol IRightSidePanelViewModel: SidePanelViewModel {
-    func setBackground(color: UIColor)
+    // func setBackground(color: UIColor)
+    func handle(interaction: InteractionType)
 }
 
 final class RightSidePanelViewModel: QuickInteractible, IRightSidePanelViewModel {
@@ -20,6 +25,13 @@ final class RightSidePanelViewModel: QuickInteractible, IRightSidePanelViewModel
     // MARK: - Interface
 
     func setBackground(color _: UIColor) {}
+
+    func handle(interaction: InteractionType) {
+        switch interaction {
+        case let .setBackground(hex: color):
+            set(background: color)
+        }
+    }
 
     // MARK: - Input
 
@@ -32,7 +44,16 @@ final class RightSidePanelViewModel: QuickInteractible, IRightSidePanelViewModel
     // MARK: - Helpers
 
     private func makeModels(for quickType: QuickViewType) {
-        print("interacting with: \(quickType)")
+        _ = quickType
+        // print("interacting with: \(quickType)")
+    }
+
+    // MARK: - Actions
+
+    private func set(background hex: String) {
+        if let color = UIColor(hexStr: hex) {
+            chosenView?.apply(action: .background(color))
+        }
     }
 }
 

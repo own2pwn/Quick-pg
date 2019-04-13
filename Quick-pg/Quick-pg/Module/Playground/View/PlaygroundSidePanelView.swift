@@ -88,9 +88,12 @@ final class PlaygroundSidePanelView: EPView {
     }
 
     private func setupControls() {
-        backgroundColorCell.onValidValueEntered = { colorText in
-            let color = UIColor(hexStr: colorText)
-            print(color)
+        backgroundColorCell.onValidValueEntered = { [unowned self] colorText in
+            self.viewModel.handle(interaction: .setBackground(hex: colorText))
+
+            // cell.apply(value: String)
+            // backgroundCellWantsApply(value: String)
+            // -> apply(background: String)
         }
     }
 
@@ -147,7 +150,9 @@ extension UIColor {
 extension String {
     var hexTrimmed: String {
         let disallowedChars: CharacterSet =
-            CharacterSet(charactersIn: "A" ... "F").inverted
+            CharacterSet(charactersIn: "A" ... "F")
+            .union(CharacterSet(charactersIn: "0" ... "9"))
+            .inverted
 
         return trimmingCharacters(in: disallowedChars)
     }
