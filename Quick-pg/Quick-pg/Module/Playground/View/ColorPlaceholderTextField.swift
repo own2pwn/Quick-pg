@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ColorPlaceholderTextField: StaticPlaceholderTextField, UITextFieldDelegate {
+final class ColorPlaceholderTextField: StaticPlaceholderValidatorTextField {
     // MARK: - Output
 
     var onWantBecomeFirstResponder: (() -> Void)?
@@ -56,23 +56,11 @@ final class ColorPlaceholderTextField: StaticPlaceholderTextField, UITextFieldDe
         placeholderLabelText = "#"
         placeholder = "FAFBFC"
 
-        delegate = self
-
+        add(inputValidator: ClosureBox<InputValidatorType>(closure: checkTextValid))
         add(validator: EPTextField.Validator(closure: checkTextIsColor))
     }
 
     // MARK: - Editing
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText: String = Backed(textField.text)
-        var newText: String = currentText
-
-        if let replacementRange: Range<String.Index> = Range<String.Index>(range, in: currentText) {
-            newText = currentText.replacingCharacters(in: replacementRange, with: string)
-        }
-
-        return checkTextValid(newText)
-    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()

@@ -61,7 +61,9 @@ open class EPTextField: UITextField {
     @objc
     private func handleTypedText() {
         if let textValue: String = text {
-            let allValid = validators
+            let allValid: Bool
+
+            allValid = validators
                 .map { $0.closure }
                 .map { $0(textValue) }
                 .allValid()

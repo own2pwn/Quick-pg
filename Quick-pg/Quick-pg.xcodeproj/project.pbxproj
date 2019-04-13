@@ -12,6 +12,8 @@
 		DE09A1DF225DEB2C00E71E6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1DD225DEB2C00E71E6C /* Main.storyboard */; };
 		DE09A1E1225DEB2D00E71E6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E0225DEB2D00E71E6C /* Assets.xcassets */; };
 		DE09A1E4225DEB2D00E71E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */; };
+		DE39FFD72262711D006C64DB /* InputValidatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFD62262711D006C64DB /* InputValidatorTextField.swift */; };
+		DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFDF22627201006C64DB /* StaticPlaceholderValidatorTextField.swift */; };
 		DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */; };
 		DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16722620B4300FC61DB /* Relay<T>.swift */; };
 		DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */; };
@@ -133,6 +135,8 @@
 		DE09A1E5225DEB2D00E71E6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CollectionKit.xcodeproj; sourceTree = "<group>"; };
 		DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = YetAnotherAnimationLibrary.xcodeproj; sourceTree = "<group>"; };
+		DE39FFD62262711D006C64DB /* InputValidatorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidatorTextField.swift; sourceTree = "<group>"; };
+		DE39FFDF22627201006C64DB /* StaticPlaceholderValidatorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticPlaceholderValidatorTextField.swift; sourceTree = "<group>"; };
 		DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePlaceholderTextField.swift; sourceTree = "<group>"; };
 		DE60B16722620B4300FC61DB /* Relay<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Relay<T>.swift"; sourceTree = "<group>"; };
 		DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosureBox<T>.swift"; sourceTree = "<group>"; };
@@ -256,7 +260,9 @@
 			isa = PBXGroup;
 			children = (
 				DE60B16B22620B6400FC61DB /* EPTextField.swift */,
+				DE39FFD62262711D006C64DB /* InputValidatorTextField.swift */,
 				DE60B16D22620B7200FC61DB /* StaticPlaceholderTextField.swift */,
+				DE39FFDF22627201006C64DB /* StaticPlaceholderValidatorTextField.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */,
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
 				DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */,
+				DE39FFD72262711D006C64DB /* InputValidatorTextField.swift in Sources */,
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
@@ -527,6 +534,7 @@
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
 				DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */,
+				DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */,
 				DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */,
 				DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */,
 				DE60B17222620B9800FC61DB /* Optional+Fallback.swift in Sources */,
