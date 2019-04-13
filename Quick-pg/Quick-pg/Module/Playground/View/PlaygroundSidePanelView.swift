@@ -9,7 +9,24 @@
 import CollectionKit
 import UIKit
 
-final class PlaygroundSidePanelView: UIView {
+open class EPView: UIView {
+    // MARK: - Init
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+
+    @available(*, unavailable)
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    func setup() {}
+}
+
+final class PlaygroundSidePanelView: EPView {
     // MARK: - Views
 
     private lazy var collectionView: CollectionView = {
@@ -39,39 +56,42 @@ final class PlaygroundSidePanelView: UIView {
 
     // MARK: - Members
 
+    private let viewModel: IRightSidePanelViewModel
+
     private var cells: [UIView] = []
 
     // MARK: - Init
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        internalInit()
+    init(viewModel: IRightSidePanelViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        internalInit()
-    }
-
-    private func internalInit() {
+    override func setup() {
         [collectionView]
             .forEach(addSubview)
 
         backgroundColorCell.onWantBecomeFirstResponder = {
             g_CustomKeyboardAllowed = false
+            // todo: viewModel view: UIView wants become first responder
+            // then check if view is textfield and change global var
         }
 
         backgroundColorCell.onWantResignFirstResponder = {
             g_CustomKeyboardAllowed = true
         }
 
+        cells = [backgroundColorCell]
+        collectionProvider.views = cells
+
+        setupControls()
+    }
+
+    private func setupControls() {
         backgroundColorCell.onValidValueEntered = { colorText in
             let color = UIColor(hexStr: colorText)
             print(color)
         }
-
-        cells = [backgroundColorCell]
-        collectionProvider.views = cells
     }
 
     // MARK: - Helpers

@@ -22,10 +22,11 @@
 		DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */; };
 		DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17522620BBE00FC61DB /* String+Validators.swift */; };
 		DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B17722620BCE00FC61DB /* Array+Validators.swift */; };
+		DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED978E3226221E700D306CA /* PlaygroundViewModel.swift */; };
 		DEE39E1C225E17200083406A /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E1B225E17200083406A /* Signal.swift */; };
 		DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E20225E17F80083406A /* InteractiveView.swift */; };
 		DEE39E23225E18320083406A /* SelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E22225E18320083406A /* SelectableView.swift */; };
-		DEE39E25225E1E540083406A /* PlaygroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E24225E1E540083406A /* PlaygroundViewModel.swift */; };
+		DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E24225E1E540083406A /* RightSidePanelViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,10 +144,11 @@
 		DE60B17522620BBE00FC61DB /* String+Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validators.swift"; sourceTree = "<group>"; };
 		DE60B17722620BCE00FC61DB /* Array+Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Validators.swift"; sourceTree = "<group>"; };
 		DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PinLayout.xcodeproj; sourceTree = "<group>"; };
+		DED978E3226221E700D306CA /* PlaygroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewModel.swift; sourceTree = "<group>"; };
 		DEE39E1B225E17200083406A /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		DEE39E20225E17F80083406A /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
 		DEE39E22225E18320083406A /* SelectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableView.swift; sourceTree = "<group>"; };
-		DEE39E24225E1E540083406A /* PlaygroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewModel.swift; sourceTree = "<group>"; };
+		DEE39E24225E1E540083406A /* RightSidePanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSidePanelViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DED978DB226221D600D306CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DED978E3226221E700D306CA /* PlaygroundViewModel.swift */,
+				DEE39E24225E1E540083406A /* RightSidePanelViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		DEE39E15225E17190083406A /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,9 +334,9 @@
 		DEE39E1E225E17E10083406A /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				DED978DB226221D600D306CA /* ViewModel */,
 				DEE39E1F225E17F30083406A /* View */,
 				DE09A1DB225DEB2C00E71E6C /* PlaygroundController.swift */,
-				DEE39E24225E1E540083406A /* PlaygroundViewModel.swift */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -508,13 +519,14 @@
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
+				DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */,
 				DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */,
 				DE60B17022620B8500FC61DB /* PlaygroundSidePanelView.swift in Sources */,
 				DE60B16C22620B6400FC61DB /* EPTextField.swift in Sources */,
 				DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
-				DEE39E25225E1E540083406A /* PlaygroundViewModel.swift in Sources */,
+				DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */,
 				DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */,
 				DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */,
 				DE60B17222620B9800FC61DB /* Optional+Fallback.swift in Sources */,

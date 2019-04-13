@@ -13,13 +13,13 @@ protocol QuickView: class {
 }
 
 protocol QuickViewOut: class {
-    var tapSignal: Signal { get }
+    var tapSignal: Signal<QuickView> { get }
 }
 
 open class InteractiveView: UIView, QuickView, QuickViewOut {
     // MARK: - Output
 
-    lazy var tapSignal = Signal()
+    lazy var tapSignal = Signal<QuickView>()
 
     // MARK: - Members
 
@@ -58,6 +58,6 @@ open class InteractiveView: UIView, QuickView, QuickViewOut {
 
     @objc
     private func handleTap() {
-        tapSignal.tell()
+        tapSignal.tell(self)
     }
 }

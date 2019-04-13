@@ -27,8 +27,10 @@ final class PlaygroundController: UIViewController {
         return view
     }()
 
-    private let sidePanelView: PlaygroundSidePanelView = {
-        let view = PlaygroundSidePanelView()
+    private lazy var sidePanelView: PlaygroundSidePanelView = {
+        let view = PlaygroundSidePanelView(
+            viewModel: viewModel.rightSidePanelModel
+        )
         view.backgroundColor = #colorLiteral(red: 0.1921568627, green: 0.2352941176, blue: 0.3137254902, alpha: 1)
         view.layer.cornerRadius = 8
 
@@ -55,6 +57,10 @@ final class PlaygroundController: UIViewController {
     private func setup() {
         [clickyView, sidePanelView]
             .forEach(view.addSubview)
+
+        clickyView.tapSignal.listen { (quick: QuickView) in
+            self.viewModel.interact(with: quick)
+        }
     }
 
     // MARK: - Layout

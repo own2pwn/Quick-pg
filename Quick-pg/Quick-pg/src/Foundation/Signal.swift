@@ -8,40 +8,54 @@
 
 import Foundation
 
-typealias ActionBlock = () -> Void
+typealias ActionBlock<T> = (T) -> Void
 
 protocol SignalProducer: class {
-    func tell()
+    associatedtype PU
+
+    func tell<PU>(_ arg: PU)
 }
 
 protocol SignalConsumer: class {
-    func listen(action: @escaping ActionBlock)
+    associatedtype CU
+
+    func listen<CU>(action: @escaping ActionBlock<CU>)
 }
 
-final class Signal: SignalProducer, SignalConsumer {
+final class Signal<T>: SignalProducer, SignalConsumer {
+    typealias PU = T
+
+    typealias CU = T
+
+    // MARK: - Types
+
     // MARK: - Members
 
-    private var actions: [ActionBlock]
+    private var actions: [ActionBlock<T>]
 
     // MARK: - Interface
 
-    func listen(action: @escaping ActionBlock) {
-        actions.append(action)
+    func listen<CU>(action: @escaping (CU) -> Void) {
+        actions.append(unsafeBitCast(action, to: ActionBlock<T>.self))
     }
 
-    func tell() {
-        actions.forEach(Signal.exec)
-    }
-
-    // MARK: - Helpers
-
-    private static func exec(action: ActionBlock) {
-        action()
+    func tell<PU>(_ arg: PU) {
+        actions.forEach { (action: (T) -> Void) in
+            if let casted = arg as? T {
+                action(casted)
+            }
+        }
     }
 
     // MARK: - Init
 
     init() {
         actions = []
+    }
+}
+
+extension Signal where T == Void {
+    func tell() {
+        tell(())
     }
 }
