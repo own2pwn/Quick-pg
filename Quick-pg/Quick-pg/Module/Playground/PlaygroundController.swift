@@ -115,7 +115,7 @@ open class EPTextField: UITextField {
     }
 }
 
-final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
+open class StaticPlaceholderTextField: EPTextField {
     // MARK: - Members
 
     public var placeholderLabelText: String?
@@ -132,27 +132,6 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
         return label
     }()
 
-    // MARK: - Logic
-
-    private var currentText: String?
-
-    private var selectionObserver: NSKeyValueObservation?
-
-    private var currentTextRange: UITextRange?
-
-    //
-
-    private var previousTextString: NSAttributedString?
-
-    private var previousPlaceholderString: NSAttributedString?
-
-    private var previousFullLength: Int {
-        let textLen: Int = Fallback(to: 0, previousTextString?.length)
-        let placeholderLen: Int = Fallback(to: 0, previousPlaceholderString?.length)
-
-        return textLen + placeholderLen
-    }
-
     // MARK: - Interface
 
     func update() {
@@ -162,36 +141,18 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
 
     // MARK: - Init
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         internalInit()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         internalInit()
     }
 
     private func internalInit() {
-        observeEditing()
-        observeSelection()
         setupPlaceholderLabel()
-        delegate = self
-    }
-
-    private func observeEditing() {
-        addTarget(
-            self, action: #selector(handleTextChange),
-            for: UIControl.Event.editingChanged
-        )
-    }
-
-    private func observeSelection() {
-        selectionObserver = observe(\.selectedTextRange, options: [.new]) { [weak self] _, change in
-            if let change = change.newValue {
-                self?.currentTextRange = change
-            }
-        }
     }
 
     private func setupPlaceholderLabel() {
@@ -217,6 +178,8 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
         placeholderLabel.sizeToFit()
     }
 
+    // MARK: - Placeholder
+
     private func getCustomPlaceholder(for text: String) -> NSAttributedString {
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: placeholderTextColor ?? textColor,
@@ -228,135 +191,24 @@ final class LivePlaceholderTextField: EPTextField, UITextFieldDelegate {
             attributes: placeholderAttributes
         )
     }
-
-    private func getCustomText(for text: String) -> NSAttributedString {
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: textColor,
-            NSAttributedString.Key.font: font,
-        ]
-
-        return NSAttributedString(
-            string: text,
-            attributes: placeholderAttributes
-        )
-    }
-
-    private func getTextWithPlaceholder(for text: String, placeholder: String) -> NSAttributedString {
-        let textString: NSAttributedString = getCustomText(for: text)
-        previousTextString = textString
-
-        let placeholderRange: NSRange = NSRange(
-            location: text.length,
-            length: placeholder.length - text.length
-        )
-
-        let placeholderString: NSAttributedString =
-            getCustomPlaceholder(for: placeholder)
-            .attributedSubstring(from: placeholderRange)
-
-        previousPlaceholderString = placeholderString
-
-        let resultString = NSMutableAttributedString(attributedString: textString)
-        resultString.append(placeholderString)
-
-        print("^ tl: \(text.length)")
-
-        return resultString
-    }
-
-    @objc
-    private func handleTextChange1() {
-        guard
-            let text = text,
-            let placeholder = placeholder,
-            Backed(previousTextString?.length) < placeholder.length
-        else { return }
-
-        let l = previousFullLength
-        attributedText = getTextWithPlaceholder(for: text, placeholder: placeholder)
-
-        let newTextLength: Int = Backed(previousTextString?.length)
-        let newCaretPosition: UITextPosition? = position(from: beginningOfDocument, offset: newTextLength)
-        setCaret(at: newCaretPosition)
-    }
-
-    // MARK: - Types
-
-    enum ChangeType {
-        case none
-        case append(Int)
-        case delete
-        // replace aka paste?
-    }
-
-    private var lastChangeType: ChangeType = .none
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let textFieldText = currentText //textField.text
-        let currentText = Backed(textFieldText)
-        updateLastAction(range: range, string: string)
-
-        // range.len == to be removed
-
-        if let stringRange: Range<String.Index> = Range<String.Index>(range, in: currentText) {
-            let newString = currentText.replacingCharacters(in: stringRange, with: string)
-            print("^ [\(currentText)] => [\(newString)] => \(caretPosition!)")
-
-            return true
-        }
-
-        return false
-
-        // write custom logic for paste, select, replace, delete...
-    }
-
-    @objc
-    private func handleTextChange() {
-        currentText = text
-        currentTextRange = selectedTextRange
-        print("text: \(text!); \(caretPosition(in: currentTextRange)!)")
-    }
-
-    private func updateLastAction(range: NSRange, string: String) {
-        lastChangeType = range.length > 0 ? .delete : .append(string.length)
-        _ = string
-    }
-
-    override func deleteBackward() {
-        guard
-            let caretPosition = caretPosition(in: currentTextRange)
-        else { return }
-
-        print("caret at: \(caretPosition)")
-        let deleteRange: NSRange = NSRange(location: caretPosition - 1, length: 1)
-        if textField(self, shouldChangeCharactersIn: deleteRange, replacementString: String.empty) {
-            super.deleteBackward()
-        }
-    }
 }
 
 final class PlaygroundSidePanelView: UIView {
     // MARK: - Views
 
     private lazy var collectionView: CollectionView = {
-        let view = CollectionView()
-        view.backgroundColor = #colorLiteral(red: 0.8156862745, green: 0.9098039216, blue: 0.9647058824, alpha: 1)
-        view.layer.cornerRadius = 8
+        let collectionView = CollectionView()
+        collectionView.provider = collectionProvider
 
-        view.provider = makeCollectionViewProvider()
+        collectionView.backgroundColor = #colorLiteral(red: 0.8156862745, green: 0.9098039216, blue: 0.9647058824, alpha: 1)
+        collectionView.layer.cornerRadius = 8
 
-        return view
+        return collectionView
     }()
 
-    private let dummyView: UIView = {
-        let textField = LivePlaceholderTextField()
+    private let backgroundColorCell: ColorPlaceholderTextField = {
+        let textField = ColorPlaceholderTextField()
         textField.font = UIFont.systemFont(ofSize: 16)
-
-        textField.autocorrectionType = .no
-        textField.autocapitalizationType = .allCharacters
-
-        textField.placeholderLabelText = "#"
-        textField.placeholder = "FAFBFC"
 
         textField.placeholderTextColor = #colorLiteral(red: 0.2078431373, green: 0.2470588235, blue: 0.3333333333, alpha: 1)
         textField.backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.5137254902, blue: 0.5529411765, alpha: 1)
@@ -368,6 +220,10 @@ final class PlaygroundSidePanelView: UIView {
 
         return textField
     }()
+
+    // MARK: - Members
+
+    private var cells: [UIView] = []
 
     // MARK: - Init
 
@@ -384,6 +240,21 @@ final class PlaygroundSidePanelView: UIView {
     private func internalInit() {
         [collectionView]
             .forEach(addSubview)
+
+        backgroundColorCell.onWantBecomeFirstResponder = {
+            g_CustomKeyboardAllowed = false
+        }
+
+        backgroundColorCell.onWantResignFirstResponder = {
+            g_CustomKeyboardAllowed = true
+        }
+
+        backgroundColorCell.onValidColorInput = { text in
+            print("in: \(text)")
+        }
+
+        cells = [backgroundColorCell]
+        collectionProvider.views = cells
     }
 
     // MARK: - Helpers
@@ -394,19 +265,18 @@ final class PlaygroundSidePanelView: UIView {
         return CGSize(width: collectionSize.width, height: height)
     }
 
-    private func makeCollectionViewProvider() -> Provider {
+    private lazy var collectionProvider: SimpleViewProvider = {
         let sizeSource: SizeSource<UIView> = ClosureSizeSource<UIView>(
             sizeSource: sizeProvider
         )
-
         let flowLayout = FlowLayout(spacing: 16)
 
         return SimpleViewProvider(
-            views: [dummyView],
+            views: cells,
             sizeSource: sizeSource,
             layout: flowLayout
         )
-    }
+    }()
 
     // MARK: - Layout
 
@@ -508,4 +378,132 @@ extension UITextField {
 
 extension String {
     static let empty: String = ""
+}
+
+// ====
+
+final class ColorPlaceholderTextField: StaticPlaceholderTextField, UITextFieldDelegate {
+    // MARK: - Output
+
+    var onWantBecomeFirstResponder: (() -> Void)?
+
+    var onWantResignFirstResponder: (() -> Void)?
+
+    var onValidColorInput: ((String) -> Void)?
+
+    // MARK: - Overrides
+
+    override var canBecomeFirstResponder: Bool {
+        let desiredValue = super.canBecomeFirstResponder
+        if desiredValue {
+            onWantBecomeFirstResponder?()
+        }
+
+        return desiredValue
+    }
+
+    override var canResignFirstResponder: Bool {
+        let desiredValue = super.canResignFirstResponder
+        if desiredValue {
+            onWantResignFirstResponder?()
+        }
+
+        return desiredValue
+    }
+
+    // MARK: - Init
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        internalInit()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        internalInit()
+    }
+
+    private func internalInit() {
+        returnKeyType = .done
+
+        autocorrectionType = .no
+        autocapitalizationType = .allCharacters
+
+        placeholderLabelText = "#"
+        placeholder = "FAFBFC"
+
+        delegate = self
+
+        addTarget(
+            self,
+            action: #selector(handleTypedText),
+            for: UIControl.Event.editingDidEnd
+        )
+    }
+
+    @objc
+    private func handleTypedText() {
+        let colorValue: String = text.unsafelyUnwrapped
+        if checkTextIsColor(colorValue) {
+            onValidColorInput?(colorValue)
+        }
+    }
+
+    // MARK: - Editing
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText: String = Backed(textField.text)
+        var newText: String = currentText
+
+        if let replacementRange: Range<String.Index> = Range<String.Index>(range, in: currentText) {
+            newText = currentText.replacingCharacters(in: replacementRange, with: string)
+        }
+
+        return checkTextValid(newText)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+
+    // MARK: - Validators
+
+    private func checkTextValid(_ newText: String) -> Bool {
+        return newText.isHexOnly && newText.length <= Backed(placeholder?.length)
+    }
+
+    private func checkTextIsColor(_ text: String) -> Bool {
+        guard checkTextValid(text) else {
+            return false
+        }
+        return text.length == 6
+    }
+}
+
+// ====
+
+extension String {
+    var isHexOnly: Bool {
+        let disallowedChars: CharacterSet =
+            CharacterSet(charactersIn: "A" ... "F").inverted
+
+        return uppercased().rangeOfCharacter(from: disallowedChars) == nil
+    }
+}
+
+extension String {
+    //    func substring(with range: ClosedRange<Int>) -> String {
+    //        let lower = index(startIndex, offsetBy: range.lowerBound)
+    //        let upper = index(startIndex, offsetBy: range.upperBound)
+    //        let stringRange = Range<String.Index>(uncheckedBounds: (lower, upper))
+    //
+    //        return substring(with: stringRange)
+    //    }
+
+    func substring(with range: ClosedRange<Int>) -> String {
+        let lower = index(startIndex, offsetBy: range.lowerBound)
+        let upper = index(startIndex, offsetBy: range.upperBound)
+
+        return String(self[lower ... upper])
+    }
 }

@@ -12,6 +12,7 @@
 		DE09A1DF225DEB2C00E71E6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1DD225DEB2C00E71E6C /* Main.storyboard */; };
 		DE09A1E1225DEB2D00E71E6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E0225DEB2D00E71E6C /* Assets.xcassets */; };
 		DE09A1E4225DEB2D00E71E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */; };
+		DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */; };
 		DEE39E1C225E17200083406A /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E1B225E17200083406A /* Signal.swift */; };
 		DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E20225E17F80083406A /* InteractiveView.swift */; };
 		DEE39E23225E18320083406A /* SelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E22225E18320083406A /* SelectableView.swift */; };
@@ -122,6 +123,7 @@
 		DE09A1E5225DEB2D00E71E6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CollectionKit.xcodeproj; sourceTree = "<group>"; };
 		DE1DCCD9225E2CD400170DDD /* YetAnotherAnimationLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = YetAnotherAnimationLibrary.xcodeproj; sourceTree = "<group>"; };
+		DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePlaceholderTextField.swift; sourceTree = "<group>"; };
 		DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PinLayout.xcodeproj; sourceTree = "<group>"; };
 		DEE39E1B225E17200083406A /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		DEE39E20225E17F80083406A /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				DEE39E15225E17190083406A /* Foundation */,
 				DE91A130225DED3F0019C8DA /* lib */,
+				DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 			files = (
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
 				DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */,
+				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
