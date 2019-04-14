@@ -18,7 +18,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplication.ExtensionPointIdentifier) -> Bool {
         // print("allow => \(g_CustomKeyboardAllowed)")
 
-        return g_CustomKeyboardAllowed
+        return false // g_CustomKeyboardAllowed
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

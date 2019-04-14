@@ -10,6 +10,7 @@ import UIKit
 
 enum InteractionType {
     case setBackground(hex: String)
+    case setCorner(radius: String)
 }
 
 protocol IRightSidePanelViewModel: SidePanelViewModel {
@@ -30,6 +31,8 @@ final class RightSidePanelViewModel: QuickInteractible, IRightSidePanelViewModel
         switch interaction {
         case let .setBackground(hex: color):
             set(background: color)
+        case let .setCorner(radius: value):
+            set(corner: value)
         }
     }
 
@@ -52,27 +55,45 @@ final class RightSidePanelViewModel: QuickInteractible, IRightSidePanelViewModel
 
     private func set(background hex: String) {
         if let color = UIColor(hexStr: hex) {
-            chosenView?.apply(action: .background(color))
+            chosenView?.apply(action: .setBackground(color))
+        }
+    }
+
+    private func set(corner radius: String) {
+        if let intValue = Int(radius) {
+            chosenView?.apply(action: .setCorner(CGFloat(intValue)))
         }
     }
 }
 
 enum QuickViewAction {
-    case background(UIColor)
+    case setBackground(_ color: UIColor)
+    case setCorner(_ radius: CGFloat)
 }
 
 extension QuickView {
     func apply(action: QuickViewAction) {
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.7)
+
         switch action {
-        case let .background(color):
+        case let .setBackground(color):
             setBackground(color: color)
+        case let .setCorner(radius):
+            setCorner(radius: radius)
         }
+
+        UIView.commitAnimations()
     }
 
     // MARK: - Actions
 
     private func setBackground(color: UIColor) {
         nativeView.backgroundColor = color
+    }
+
+    private func setCorner(radius: CGFloat) {
+        nativeView.layer.cornerRadius = radius
     }
 
     // MARK: - Helpers

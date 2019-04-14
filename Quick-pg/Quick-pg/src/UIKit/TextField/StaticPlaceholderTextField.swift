@@ -102,17 +102,7 @@ open class StaticPlaceholderTextField: EPTextField {
         return desiredBounds
     }
 
-//    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-//        var desiredRect: CGRect = super.leftViewRect(forBounds: bounds)
-//
-//        let desiredCenter: CGPoint = CGPoint(x: desiredRect.midX, y: desiredRect.midY)
-//        let actualCenter: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-//
-//        let dyCenter: CGFloat = ceil(desiredCenter.y) - ceil(actualCenter.y)
-//        desiredRect.origin.y = ceil(actualCenter.y) - dyCenter
-//
-//        return desiredRect
-//    }
+    // MARK: - Layout
 
     open override func layoutSubviews() {
         placeholderLabel.sizeToFit()

@@ -90,18 +90,4 @@ open class EPTextField: UITextField {
 
         return desiredRect
     }
-
-//    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-//        var desiredRect: CGRect = super.leftViewRect(forBounds: bounds)
-//
-//        if let view = leftView {
-//            view.sizeToFit()
-//            view.layoutIfNeeded()
-//
-//            desiredRect.size = view.frame.size
-//            desiredRect.origin.x = leftViewInsetFromLeft
-//        }
-//
-//        return desiredRect
-//    }
 }

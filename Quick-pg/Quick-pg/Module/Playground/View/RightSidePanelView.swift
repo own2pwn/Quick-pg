@@ -121,6 +121,10 @@ final class RightSidePanelView: EPView {
             return intValue >= 0 && intValue <= 100
         }
         cornerRadiusCell.add(validator: EPTextField.Validator(closure: numericValueValidator))
+
+        cornerRadiusCell.onValidValueEntered = { [unowned self] cornerRadius in
+            self.viewModel.handle(interaction: .setCorner(radius: cornerRadius))
+        }
     }
 
     // MARK: - Helpers
