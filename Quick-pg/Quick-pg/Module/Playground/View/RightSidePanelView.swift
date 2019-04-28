@@ -130,9 +130,13 @@ final class RightSidePanelView: EPView {
     // MARK: - Helpers
 
     func sizeProvider(at _: Int, data _: UIView, collectionSize: CGSize) -> CGSize {
-        let height: CGFloat = 64
+        let perRow: CGFloat = 2
+        let spacing: CGFloat = 4
+        let width: CGFloat = collectionSize.width
 
-        return CGSize(width: collectionSize.width, height: height)
+        let side: CGFloat = (width / perRow) - (spacing * (perRow - 1))
+
+        return CGSize(width: side, height: side)
     }
 
     private lazy var collectionProvider: SimpleViewProvider = {
@@ -159,5 +163,64 @@ final class RightSidePanelView: EPView {
 
         backgroundColorCell.update()
         cornerRadiusCell.update()
+    }
+}
+
+protocol ISidePanelCell: class {
+    func setText(_ text: String)
+}
+
+final class SidePanelCell: EPView, ISidePanelCell {
+    // MARK: - Views
+
+    private let iconView: UIImageView = {
+        let imageView = UIImageView(image: nil)
+        imageView.contentMode = .scaleAspectFit
+
+        return imageView
+    }()
+
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.textColor = #colorLiteral(red: 0.1569964886, green: 0.1586591899, blue: 0.2031466067, alpha: 1)
+
+        return label
+    }()
+
+    // MARK: - Interface
+
+    func setText(_ text: String) {
+        titleLabel.text = text
+        layoutLabel()
+    }
+
+    // MARK: - Setup
+
+    override func setup() {
+        backgroundColor = #colorLiteral(red: 0.9309999943, green: 0.9462000728, blue: 0.9499999881, alpha: 1)
+
+        [iconView, titleLabel]
+            .forEach(addSubview)
+    }
+
+    // MARK: - Layout
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        iconView.pin
+            .size(32)
+            .center()
+
+        layoutLabel()
+    }
+
+    private func layoutLabel() {
+        titleLabel.pin
+            .below(of: iconView)
+            .marginTop(8)
+            .horizontally(4)
+            .sizeToFit(.width)
     }
 }
