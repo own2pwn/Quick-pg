@@ -8,7 +8,11 @@
 
 import UIKit
 
-open class EPView: UIView {
+protocol ILayoutable: class {
+    func layout()
+}
+
+open class EPView: UIView, ILayoutable {
     // MARK: - Init
 
     public override init(frame: CGRect) {
@@ -23,4 +27,14 @@ open class EPView: UIView {
     }
 
     func setup() {}
+
+    // MARK: - Layout
+
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+
+        layout()
+    }
+
+    func layout() {}
 }
