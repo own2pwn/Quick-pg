@@ -28,13 +28,19 @@ final class RightSidePanelView: EPView {
         return collectionView
     }()
 
-    private let viewNameCell: SidePanelCell = {
+    private let nameCell: SidePanelCell = {
         let view = SidePanelCell()
 
         return view
     }()
 
-    private let viewBackgroundColorCell: SidePanelCell = {
+    private let backgroundColorCell: SidePanelCell = {
+        let view = SidePanelCell()
+
+        return view
+    }()
+
+    private let cornerRadiusCell: SidePanelCell = {
         let view = SidePanelCell()
 
         return view
@@ -47,7 +53,7 @@ final class RightSidePanelView: EPView {
     private var cells: [Cell] = []
 
     private var models: [Model] = [
-        "Name", "Background",
+        "Name", "Background", "Corner radius",
     ]
 
     // MARK: - Init
@@ -66,8 +72,9 @@ final class RightSidePanelView: EPView {
 
     private func makeCells() {
         cells = [
-            viewNameCell,
-            viewBackgroundColorCell,
+            nameCell,
+            backgroundColorCell,
+            cornerRadiusCell,
         ]
         collectionProvider.reloadData()
     }
@@ -90,19 +97,21 @@ final class RightSidePanelView: EPView {
         return CGSize(width: side, height: side)
     }
 
-    private lazy var collectionProvider: BasicProvider<Model, Cell> = {
-        let layout = FlowLayout()
-        layout.interitemSpacing = 4
-        layout.lineSpacing = 16
+    private lazy var collectionProvider: ComposedProvider = {
+        let layout = FlowLayout(spacing: 4)
 
-        // layout.justifyContent = .spa
-
-        let provider: BasicProvider<Model, Cell> = BasicProvider<Model, Cell>(
+        let sectionProvider: BasicProvider<Model, Cell> = BasicProvider<Model, Cell>(
             dataSource: models, viewSource: viewSource, sizeSource: sizeSource
         )
-        provider.layout = layout//.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
+        sectionProvider.layout = layout // .inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
 
-        return provider
+        let mainLayout = FlowLayout().inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
+
+        let composedProvider = ComposedProvider(
+            layout: mainLayout, sections: [sectionProvider]
+        )
+
+        return composedProvider
     }()
 
     // MARK: - Layout
