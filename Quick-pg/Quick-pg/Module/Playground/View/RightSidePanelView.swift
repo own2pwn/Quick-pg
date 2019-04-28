@@ -151,6 +151,8 @@ final class SidePanelCell: EPView, ISidePanelCell {
     private let iconView: UIImageView = {
         let imageView = UIImageView(image: nil)
         imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = #colorLiteral(red: 0.436576277, green: 0.8080026507, blue: 0.5136813521, alpha: 1)
+        imageView.layer.cornerRadius = 4
 
         return imageView
     }()
@@ -187,8 +189,9 @@ final class SidePanelCell: EPView, ISidePanelCell {
 
     override func layout() {
         iconView.pin
-            .size(32)
-            .center()
+            .size(48)
+            .top(16)
+            .hCenter()
 
         layoutLabel()
     }
