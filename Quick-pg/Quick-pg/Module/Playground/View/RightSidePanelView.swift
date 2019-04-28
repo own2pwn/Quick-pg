@@ -10,6 +10,10 @@ import CollectionKit
 import UIKit
 
 final class RightSidePanelView: EPView {
+    // MARK: - Static
+
+    private static let spacing: CGFloat = 4
+
     // MARK: - Types
 
     private typealias Model = String
@@ -98,14 +102,15 @@ final class RightSidePanelView: EPView {
     }
 
     private lazy var collectionProvider: ComposedProvider = {
-        let layout = FlowLayout(spacing: 4)
-
         let sectionProvider: BasicProvider<Model, Cell> = BasicProvider<Model, Cell>(
             dataSource: models, viewSource: viewSource, sizeSource: sizeSource
         )
-        sectionProvider.layout = layout // .inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
+        sectionProvider.layout = FlowLayout(
+            spacing: RightSidePanelView.spacing
+        )
 
-        let mainLayout = FlowLayout().inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
+        let mainLayout = FlowLayout()
+            .inset(by: UIEdgeInsets(all: RightSidePanelView.spacing))
 
         let composedProvider = ComposedProvider(
             layout: mainLayout, sections: [sectionProvider]
@@ -193,5 +198,14 @@ final class SidePanelCell: EPView, ISidePanelCell {
             .bottom(8)
             .horizontally(4)
             .sizeToFit(.width)
+    }
+}
+
+public extension UIEdgeInsets {
+    init(all: CGFloat) {
+        self.init(
+            top: all, left: all,
+            bottom: all, right: all
+        )
     }
 }
