@@ -14,7 +14,6 @@
 		DE09A1E4225DEB2D00E71E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE09A1E2225DEB2D00E71E6C /* LaunchScreen.storyboard */; };
 		DE39FFD72262711D006C64DB /* InputValidatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFD62262711D006C64DB /* InputValidatorTextField.swift */; };
 		DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFDF22627201006C64DB /* StaticPlaceholderValidatorTextField.swift */; };
-		DE39FFE3226272B4006C64DB /* EPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFE2226272B4006C64DB /* EPView.swift */; };
 		DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFEB22627306006C64DB /* UIColor+Hex.swift */; };
 		DE39FFEF226273D8006C64DB /* SidePanelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */; };
 		DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */; };
@@ -77,54 +76,19 @@
 			remoteGlobalIDString = B197CE161E8B660F004495AE;
 			remoteInfo = YetAnotherAnimationLibrary;
 		};
-		DE91A742225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+		DEA7EDB622760C8500EDD0C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			containerPortal = DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 249EFE7A1E64FB4C00165E39;
-			remoteInfo = "PinLayout-iOS";
+			remoteGlobalIDString = DE3ADA19227317F7009E1301;
+			remoteInfo = EPKit;
 		};
-		DE91A744225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
+		DEA7EDB922760C9000EDD0C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DF1A5D2C2084CF9700725EF5;
-			remoteInfo = "PinLayout-macOS";
-		};
-		DE91A746225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 244DF2F81EF46C500090508B;
-			remoteInfo = "PinLayout-tvOS";
-		};
-		DE91A748225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 249EFE831E64FB4C00165E39;
-			remoteInfo = "PinLayoutTests-iOS";
-		};
-		DE91A74A225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DF1A5D1D2084C94700725EF5;
-			remoteInfo = "PinLayoutTests-macOS";
-		};
-		DE91A74C225DEDEC0019C8DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DFF6F9C22084DCD3004F5AED;
-			remoteInfo = "PinLayoutTests-tvOS";
-		};
-		DE91A844225DEE000019C8DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+			containerPortal = DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 249EFE791E64FB4C00165E39;
-			remoteInfo = "PinLayout-iOS";
+			remoteGlobalIDString = DE3ADA18227317F7009E1301;
+			remoteInfo = EPKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -153,7 +117,7 @@
 		DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPlaceholderTextField.swift; sourceTree = "<group>"; };
 		DE60B17522620BBE00FC61DB /* String+Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validators.swift"; sourceTree = "<group>"; };
 		DE60B17722620BCE00FC61DB /* Array+Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Validators.swift"; sourceTree = "<group>"; };
-		DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PinLayout.xcodeproj; sourceTree = "<group>"; };
+		DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EPKit.xcodeproj; sourceTree = "<group>"; };
 		DED978E3226221E700D306CA /* PlaygroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewModel.swift; sourceTree = "<group>"; };
 		DEE39E1B225E17200083406A /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		DEE39E20225E17F80083406A /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
@@ -365,30 +329,26 @@
 		DE91A130225DED3F0019C8DA /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				DEA7EDAC22760C8400EDD0C0 /* EPKit */,
 				DE1DCAFE225E2C7200170DDD /* CollectionKit */,
-				DE91A5E9225DEDEC0019C8DA /* PinLayout */,
 				DE1DCCD3225E2CD400170DDD /* YetAnotherAnimationLibrary */,
 			);
 			path = lib;
 			sourceTree = "<group>";
 		};
-		DE91A5E9225DEDEC0019C8DA /* PinLayout */ = {
+		DEA7EDAC22760C8400EDD0C0 /* EPKit */ = {
 			isa = PBXGroup;
 			children = (
-				DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */,
+				DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */,
 			);
-			path = PinLayout;
+			name = EPKit;
+			path = EPKit/EPKit;
 			sourceTree = "<group>";
 		};
-		DE91A72D225DEDEC0019C8DA /* Products */ = {
+		DEA7EDB222760C8400EDD0C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE91A743225DEDEC0019C8DA /* PinLayout.framework */,
-				DE91A745225DEDEC0019C8DA /* PinLayout.framework */,
-				DE91A747225DEDEC0019C8DA /* PinLayout.framework */,
-				DE91A749225DEDEC0019C8DA /* PinLayoutTests-iOS.xctest */,
-				DE91A74B225DEDEC0019C8DA /* PinLayoutTests-macOS.xctest */,
-				DE91A74D225DEDEC0019C8DA /* PinLayoutTests-tvOS.xctest */,
+				DEA7EDB722760C8500EDD0C0 /* libEPKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,9 +413,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				DEA7EDBA22760C9000EDD0C0 /* PBXTargetDependency */,
 				DE1DCD8C225E2D1100170DDD /* PBXTargetDependency */,
 				DE1DCD8A225E2D0D00170DDD /* PBXTargetDependency */,
-				DE91A845225DEE000019C8DA /* PBXTargetDependency */,
 			);
 			name = "Quick-pg";
 			productName = "Quick-pg";
@@ -494,8 +454,8 @@
 					ProjectRef = DE1DCB0E225E2C7200170DDD /* CollectionKit.xcodeproj */;
 				},
 				{
-					ProductGroup = DE91A72D225DEDEC0019C8DA /* Products */;
-					ProjectRef = DE91A72C225DEDEC0019C8DA /* PinLayout.xcodeproj */;
+					ProductGroup = DEA7EDB222760C8400EDD0C0 /* Products */;
+					ProjectRef = DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */;
 				},
 				{
 					ProductGroup = DE1DCCDA225E2CD400170DDD /* Products */;
@@ -538,46 +498,11 @@
 			remoteRef = DE1DCD15225E2CD400170DDD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DE91A743225DEDEC0019C8DA /* PinLayout.framework */ = {
+		DEA7EDB722760C8500EDD0C0 /* libEPKit.a */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PinLayout.framework;
-			remoteRef = DE91A742225DEDEC0019C8DA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE91A745225DEDEC0019C8DA /* PinLayout.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PinLayout.framework;
-			remoteRef = DE91A744225DEDEC0019C8DA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE91A747225DEDEC0019C8DA /* PinLayout.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PinLayout.framework;
-			remoteRef = DE91A746225DEDEC0019C8DA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE91A749225DEDEC0019C8DA /* PinLayoutTests-iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "PinLayoutTests-iOS.xctest";
-			remoteRef = DE91A748225DEDEC0019C8DA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE91A74B225DEDEC0019C8DA /* PinLayoutTests-macOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "PinLayoutTests-macOS.xctest";
-			remoteRef = DE91A74A225DEDEC0019C8DA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE91A74D225DEDEC0019C8DA /* PinLayoutTests-tvOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "PinLayoutTests-tvOS.xctest";
-			remoteRef = DE91A74C225DEDEC0019C8DA /* PBXContainerItemProxy */;
+			fileType = archive.ar;
+			path = libEPKit.a;
+			remoteRef = DEA7EDB622760C8500EDD0C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -608,7 +533,6 @@
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
-				DE39FFE3226272B4006C64DB /* EPView.swift in Sources */,
 				DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */,
 				DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */,
 				DE60B17022620B8500FC61DB /* RightSidePanelView.swift in Sources */,
@@ -638,10 +562,10 @@
 			name = YetAnotherAnimationLibrary;
 			targetProxy = DE1DCD8B225E2D1100170DDD /* PBXContainerItemProxy */;
 		};
-		DE91A845225DEE000019C8DA /* PBXTargetDependency */ = {
+		DEA7EDBA22760C9000EDD0C0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "PinLayout-iOS";
-			targetProxy = DE91A844225DEE000019C8DA /* PBXContainerItemProxy */;
+			name = EPKit;
+			targetProxy = DEA7EDB922760C9000EDD0C0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

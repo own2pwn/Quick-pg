@@ -7,6 +7,7 @@
 //
 
 import CollectionKit
+import EPUIKit
 import PinLayout
 import UIKit
 
@@ -15,6 +16,8 @@ public enum QuickViewType {
 }
 
 final class PlaygroundViewHolder {}
+
+final class InteractivePopup: EPView {}
 
 final class PlaygroundController: UIViewController {
     // MARK: - Views
