@@ -17,7 +17,30 @@ public enum QuickViewType {
 
 final class PlaygroundViewHolder {}
 
-final class PlaygroundDockView: EPShadowCardView {}
+final class PlaygroundDockView: EPShadowCardView {
+    // MARK: - Views
+
+    private let interactiveView: InteractiveView = {
+        let view = InteractiveView()
+        view.backgroundColor = #colorLiteral(red: 0.436576277, green: 0.8080026507, blue: 0.5136813521, alpha: 1)
+        view.layer.cornerRadius = 12
+
+        return view
+    }()
+
+    override var views: [UIView] {
+        return [interactiveView]
+    }
+
+    // MARK: - Layout
+
+    override func layout() {
+        interactiveView.pin
+            .height(100)
+            .width(108)
+            .center()
+    }
+}
 
 final class PlaygroundController: EYController {
     // MARK: - Views
