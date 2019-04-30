@@ -1,9 +1,9 @@
-[submodule "Quick-pg/Quick-pg/src/lib/PinLayout"]
-	path = Quick-pg/Quick-pg/src/lib/PinLayout
-	url = https://github.com/own2pwn/PinLayout
 [submodule "Quick-pg/Quick-pg/src/lib/CollectionKit"]
 	path = Quick-pg/Quick-pg/src/lib/CollectionKit
 	url = https://github.com/own2pwn/CollectionKit
 [submodule "Quick-pg/Quick-pg/src/lib/YetAnotherAnimationLibrary"]
 	path = Quick-pg/Quick-pg/src/lib/YetAnotherAnimationLibrary
 	url = https://github.com/own2pwn/YetAnotherAnimationLibrary
+[submodule "Quick-pg/Quick-pg/src/lib/EPKit"]
+	path = Quick-pg/Quick-pg/src/lib/EPKit
+	url = https://github.com/own2pwn/EPKit

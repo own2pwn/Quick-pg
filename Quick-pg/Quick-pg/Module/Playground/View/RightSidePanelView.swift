@@ -7,6 +7,7 @@
 //
 
 import CollectionKit
+import EPUIKit
 import UIKit
 
 final class RightSidePanelView: EPView {
