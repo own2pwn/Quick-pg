@@ -17,6 +17,8 @@ public enum QuickViewType {
 
 final class PlaygroundViewHolder {}
 
+final class PlaygroundDockView: EPShadowCardView {}
+
 final class PlaygroundController: EYController {
     // MARK: - Views
 
@@ -44,8 +46,28 @@ final class PlaygroundController: EYController {
         return view
     }()
 
+    private let dockView: PlaygroundDockView = {
+        let view = PlaygroundDockView()
+        view.backgroundColor = #colorLiteral(red: 0.5135422349, green: 0.7635512948, blue: 0.9127233028, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.508185029, green: 0.5382546782, blue: 0.5591002107, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1921568627, green: 0.2352941176, blue: 0.3137254902, alpha: 1)
+
+        let shadowOffset: CGSize = CGSize(
+            width: 0, height: 1
+        )
+
+        view.shadow = Shadow(
+            color: #colorLiteral(red: 0.1499999464, green: 0.1499999464, blue: 0.1499999464, alpha: 1), radius: 8,
+            offset: shadowOffset, opacity: 0.7
+        )
+
+        view.cornerRadius = 32
+
+        return view
+    }()
+
     override var views: [UIView] {
-        return [clickyView, sidePanelView, popupView]
+        return [dockView]
     }
 
     // MARK: - Members
@@ -63,6 +85,7 @@ final class PlaygroundController: EYController {
         setup()
 
         view.backgroundColor = #colorLiteral(red: 0.7333333333, green: 0.9137254902, blue: 0.8078431373, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.5135422349, green: 0.7635512948, blue: 0.9127233028, alpha: 1)
     }
 
     override func setup() {
@@ -87,11 +110,21 @@ final class PlaygroundController: EYController {
             .marginEnd(24)
 
         layoutPopup()
+        layoutDock()
     }
 
     private func layoutPopup() {
-        // popupView.pin.width(view.frame.width / 3.2)
         popupView.layoutIfNeeded()
         popupView.pin.center()
+    }
+
+    private func layoutDock() {
+        dockView.pin
+            .height(142)
+            // .horizontally(56)
+            .aspectRatio(4.8)
+            .hCenter()
+            .bottom(view.pin.safeArea)
+            .marginBottom(24)
     }
 }
