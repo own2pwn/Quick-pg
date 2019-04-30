@@ -37,6 +37,12 @@
 		DE6B5E2E2277007300CE78B6 /* Montserrat Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE6B5E242277007300CE78B6 /* Montserrat Medium.ttf */; };
 		DE6B5E2F2277007300CE78B6 /* Montserrat SemiBold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE6B5E252277007300CE78B6 /* Montserrat SemiBold Italic.ttf */; };
 		DE6B5E392277009900CE78B6 /* Const+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6B5E382277009900CE78B6 /* Const+Font.swift */; };
+		DED2DBA022781244000C2DD2 /* InteractivePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DB9F22781244000C2DD2 /* InteractivePopup.swift */; };
+		DED2DBA522781279000C2DD2 /* Bool+Reverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA422781279000C2DD2 /* Bool+Reverse.swift */; };
+		DED2DBA8227812B2000C2DD2 /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA7227812B2000C2DD2 /* UIEdgeInsets+Extension.swift */; };
+		DED2DBAA227812C7000C2DD2 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA9227812C7000C2DD2 /* String+Length.swift */; };
+		DED2DBAD227812DC000C2DD2 /* UITextField+Caret.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBAC227812DC000C2DD2 /* UITextField+Caret.swift */; };
+		DED2DBAF227812FD000C2DD2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBAE227812FD000C2DD2 /* String+Extension.swift */; };
 		DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED978E3226221E700D306CA /* PlaygroundViewModel.swift */; };
 		DEE39E1C225E17200083406A /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E1B225E17200083406A /* Signal.swift */; };
 		DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E20225E17F80083406A /* InteractiveView.swift */; };
@@ -140,6 +146,12 @@
 		DE6B5E252277007300CE78B6 /* Montserrat SemiBold Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat SemiBold Italic.ttf"; sourceTree = "<group>"; };
 		DE6B5E382277009900CE78B6 /* Const+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Const+Font.swift"; sourceTree = "<group>"; };
 		DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EPKit.xcodeproj; sourceTree = "<group>"; };
+		DED2DB9F22781244000C2DD2 /* InteractivePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopup.swift; sourceTree = "<group>"; };
+		DED2DBA422781279000C2DD2 /* Bool+Reverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Reverse.swift"; sourceTree = "<group>"; };
+		DED2DBA7227812B2000C2DD2 /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
+		DED2DBA9227812C7000C2DD2 /* String+Length.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
+		DED2DBAC227812DC000C2DD2 /* UITextField+Caret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Caret.swift"; sourceTree = "<group>"; };
+		DED2DBAE227812FD000C2DD2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DED978E3226221E700D306CA /* PlaygroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewModel.swift; sourceTree = "<group>"; };
 		DEE39E1B225E17200083406A /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		DEE39E20225E17F80083406A /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
@@ -229,6 +241,7 @@
 			children = (
 				DE39FFED22627339006C64DB /* Interaction */,
 				DE39FFE2226272B4006C64DB /* EPView.swift */,
+				DED2DB9F22781244000C2DD2 /* InteractivePopup.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,6 +258,7 @@
 		DE39FFE5226272CF006C64DB /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				DED2DBA322781269000C2DD2 /* Bool */,
 				DE39FFEA226272E8006C64DB /* Collection */,
 				DE39FFE9226272E6006C64DB /* String */,
 				DE39FFE8226272E2006C64DB /* Optional */,
@@ -255,6 +269,8 @@
 		DE39FFE6226272DC006C64DB /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				DED2DBAB227812D2000C2DD2 /* TextField */,
+				DED2DBA6227812A6000C2DD2 /* Insets */,
 				DE39FFE7226272DE006C64DB /* Color */,
 			);
 			path = UIKit;
@@ -280,6 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				DE60B17522620BBE00FC61DB /* String+Validators.swift */,
+				DED2DBA9227812C7000C2DD2 /* String+Length.swift */,
+				DED2DBAE227812FD000C2DD2 /* String+Extension.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -440,6 +458,30 @@
 				DEA7EDB722760C8500EDD0C0 /* libEPKit.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DED2DBA322781269000C2DD2 /* Bool */ = {
+			isa = PBXGroup;
+			children = (
+				DED2DBA422781279000C2DD2 /* Bool+Reverse.swift */,
+			);
+			path = Bool;
+			sourceTree = "<group>";
+		};
+		DED2DBA6227812A6000C2DD2 /* Insets */ = {
+			isa = PBXGroup;
+			children = (
+				DED2DBA7227812B2000C2DD2 /* UIEdgeInsets+Extension.swift */,
+			);
+			path = Insets;
+			sourceTree = "<group>";
+		};
+		DED2DBAB227812D2000C2DD2 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				DED2DBAC227812DC000C2DD2 /* UITextField+Caret.swift */,
+			);
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		DED978DB226221D600D306CA /* ViewModel */ = {
@@ -625,22 +667,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */,
+				DED2DBA022781244000C2DD2 /* InteractivePopup.swift in Sources */,
 				DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */,
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
 				DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */,
 				DE39FFD72262711D006C64DB /* InputValidatorTextField.swift in Sources */,
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
+				DED2DBAF227812FD000C2DD2 /* String+Extension.swift in Sources */,
+				DED2DBA522781279000C2DD2 /* Bool+Reverse.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
 				DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */,
 				DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */,
+				DED2DBAD227812DC000C2DD2 /* UITextField+Caret.swift in Sources */,
 				DE60B17022620B8500FC61DB /* RightSidePanelView.swift in Sources */,
 				DE60B16C22620B6400FC61DB /* EPTextField.swift in Sources */,
 				DE39FFEF226273D8006C64DB /* SidePanelTextField.swift in Sources */,
 				DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
+				DED2DBA8227812B2000C2DD2 /* UIEdgeInsets+Extension.swift in Sources */,
 				DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */,
+				DED2DBAA227812C7000C2DD2 /* String+Length.swift in Sources */,
 				DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */,
 				DE6B5E392277009900CE78B6 /* Const+Font.swift in Sources */,
 				DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */,
