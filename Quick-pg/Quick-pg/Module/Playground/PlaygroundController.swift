@@ -15,7 +15,48 @@ public enum QuickViewType {
     case plain
 }
 
-final class PlaygroundViewHolder {}
+final class ViewProducer: EPView {
+    // MARK: - Touches
+
+    // MARK: Members
+
+    private var interactionState: InteractionState = .none
+
+    // MARK: Overrides
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        update(with: .possible)
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        update(with: .interacting)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        update(with: .none)
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        update(with: .none)
+    }
+
+    // MARK: Private
+
+    private enum InteractionState {
+        case none
+        case possible
+        case interacting
+    }
+
+    private func update(with new: InteractionState) {
+        let current: InteractionState = interactionState
+        interactionState = new
+
+        
+    }
+
+    // MARK: -
+}
 
 final class PlaygroundDockView: EPShadowCardView {
     // MARK: - Views
