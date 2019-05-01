@@ -243,7 +243,18 @@ final class ViewAnimationQueue {
 
     // MARK: - Interface
 
-    static func add(_ animations: @escaping VoidBlock, to view: UIView) {
+    static func run(_ animations: @escaping VoidBlock, on view: UIView) {
+        let action: Action = self.action(for: view)
+
+        switch action {
+        case .animate:
+            animate(animations, on: view)
+        case .takeNext:
+            animateNext(on: view)
+        case .queue:
+            queueAnimation(animations, for: view)
+        }
+
         let ptr: UInt = viewPtr(of: view)
 
         guard let queued = queue[ptr], !queued.isEmpty else {
@@ -253,27 +264,44 @@ final class ViewAnimationQueue {
 
     // MARK: - Logic
 
+    private static func animate(_ animations: @escaping VoidBlock, on view: UIView) {
+        set(state: .animating, for: view)
+        UIView.animate(withDuration: UIView.animationDuration, animations: animations) { completed in
+            assert(completed)
+            self.set(state: .possible, for: view)
+            self.animateNext(on: view)
+        }
+    }
 
+    private static func animateNext(on view: UIView) {
+        guard let next = nextAnimation(for: view) else {
+            return
+        }
 
-    private static func append(_ animations: @escaping VoidBlock, to view: UIView) {
-        let ptr: UInt = viewPtr(of: view)
-        let newAnimation: ViewAnimation = ViewAnimation(
+        return animate(next.animations, on: view)
+    }
+
+    private static func queueAnimation(_ animations: @escaping VoidBlock, for view: UIView) {
+        let newAnimation: Animation = Animation(
             view: view, animations: animations
         )
-        append(newAnimation, to: ptr)
+        append(newAnimation, for: view)
     }
 
     // MARK: - Helpers
 
-    private static func append(_ animation: ViewAnimation, to viewPtr: UInt) {
-        guard let existing: [ViewAnimation] = queue[viewPtr] else {
-            return queue[viewPtr] = [animation]
+    private static func append(_ animation: Animation, for view: UIView) {
+        let ptr: UInt = viewPtr(of: view)
+        guard let existing: [Animation] = queue[ptr] else {
+            return queue[ptr] = [animation]
         }
 
         var mutated = existing
         mutated.append(animation)
-        queue[viewPtr] = mutated
+        queue[ptr] = mutated
     }
+
+    // MARK: - Logic
 
     private static func pendingAnimations(for view: UIView) -> [Animation] {
         let ptr: UInt = viewPtr(of: view)
@@ -308,6 +336,27 @@ final class ViewAnimationQueue {
         if !pending.isEmpty, state == .animating {
             return .queue
         }
+    }
+
+    // MARK: - Helpers
+
+    private static func set(state: State, for view: UIView) {
+        let ptr: UInt = viewPtr(of: view)
+        states[ptr] = state
+    }
+
+    private static func nextAnimation(for view: UIView) -> Animation? {
+        let ptr: UInt = viewPtr(of: view)
+        let pending: [Animation] = pendingAnimations(for: view)
+        guard !pending.isEmpty else {
+            return nil
+        }
+        var mutated: [Animation] = pending
+        let next: Animation? = mutated.takeFirst()
+
+        queue[ptr] = mutated
+
+        return next
     }
 
     private static func viewPtr(of view: UIView) -> UInt {
@@ -403,9 +452,33 @@ final class GenericCache<T: Hashable> {
     private init() {}
 }
 
-enum Memory {
-    static func ptr<T: AnyObject>(of object: T) -> UInt {
+public enum Memory {
+    public static func ptr<T: AnyObject>(of object: T) -> UInt {
         return unsafeBitCast(object, to: UInt.self)
     }
 }
 
+public extension Array {
+    @inlinable
+    mutating func takeFirst() -> Element? {
+        guard count > 0 else {
+            return nil
+        }
+        return remove(at: 0)
+    }
+}
+
+//public extension Array {
+//    @inlinable __consuming
+//    func takeFirst(n: Int) -> SubSequence {
+//        return dropFirst(n)
+//    }
+//
+//    @inlinable __consuming
+//    func takeFirst() -> SubSequence? {
+//        guard count > 0 else {
+//            return nil
+//        }
+//        return dropFirst()
+//    }
+//}
