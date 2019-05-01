@@ -15,7 +15,57 @@ public enum QuickViewType {
     case plain
 }
 
-final class _InteractiveView: EPShadowView {}
+final class _InteractiveView: EPShadowView {
+    // MARK: - Static
+
+    static let shadow: Shadow = Shadow(
+        color: #colorLiteral(red: 0.1499999464, green: 0.1499999464, blue: 0.1499999464, alpha: 1), radius: 8,
+        offset: .zero, opacity: 0.3
+    )
+
+    // MARK: - Touches
+
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
+        superview?.bringSubviewToFront(self)
+        UIView.animate {
+            self.setShadow(_InteractiveView.shadow)
+        }
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
+        let moveDelta: CGPoint = self.moveDelta(from: touches)
+        frame.origin.adjust(by: moveDelta)
+    }
+
+    override func touchesEnded(_: Set<UITouch>, with _: UIEvent?) {
+        UIView.animate {
+            self.setShadow(Shadow.clear)
+        }
+    }
+
+    override func touchesCancelled(_: Set<UITouch>, with _: UIEvent?) {
+        UIView.animate {
+            self.setShadow(Shadow.clear)
+        }
+    }
+
+    // MARK: - Helpers
+
+    private func moveDelta(from touches: Set<UITouch>) -> CGPoint {
+        guard let touch = touches.first else {
+            return .zero
+        }
+
+        return moveDelta(touch: touch)
+    }
+
+    private func moveDelta(touch: UITouch) -> CGPoint {
+        let current: CGPoint = touch.location(in: superview)
+        let previous: CGPoint = touch.previousLocation(in: superview)
+
+        return current - previous
+    }
+}
 
 protocol IViewProducer: class {
     var onProduced: Signal<_InteractiveView> { get }
@@ -174,11 +224,7 @@ final class ViewProducer: EPView, IViewProducer {
         let view: _InteractiveView = _InteractiveView(frame: bounds)
         view.backgroundColor = #colorLiteral(red: 0.9309999943, green: 0.9462000728, blue: 0.9499999881, alpha: 1)
         view.contentView.layer.cornerRadius = layer.cornerRadius
-
-        view.shadow = Shadow(
-            color: #colorLiteral(red: 0.1499999464, green: 0.1499999464, blue: 0.1499999464, alpha: 1), radius: 8,
-            offset: .zero, opacity: 0.3
-        )
+        view.shadow = _InteractiveView.shadow
 
         producedView = view
         return view
@@ -303,7 +349,11 @@ final class PlaygroundDockView: EPShadowCardView {
         let insideDock: Bool = mappedRect.intersects(view.frame)
 
         if insideDock {
-            kill(view: view)
+            return kill(view: view)
+        }
+
+        UIView.animate {
+            view.setShadow(Shadow.clear)
         }
     }
 
@@ -320,10 +370,6 @@ final class PlaygroundDockView: EPShadowCardView {
             UIView.addKeyframe(withRelativeStartTime: 0.7, relativeDuration: 0.9, animations: {
                 view.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
             })
-
-//            UIView.addKeyframe(withRelativeStartTime: 0.7, relativeDuration: 1, animations: {
-//                view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-//            })
 
         }) { _ in
             view.removeFromSuperview()
