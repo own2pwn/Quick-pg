@@ -234,24 +234,33 @@ public extension UIView {
     }
 }
 
-struct ViewAnimation {
-    let view: UIView
-    let animations: VoidBlock
-}
-
 final class ViewAnimationQueue {
     // MARK: - Members
 
-    private static var queue: [UInt: [ViewAnimation]] = [:]
+    private static var queue: [UInt: [Animation]] = [:]
+
+    private static var states: [UInt: State] = [:]
 
     // MARK: - Interface
 
-    static func append(_ animations: @escaping VoidBlock, to view: UIView) {
-        let viewPtr: UInt = Memory.ptr(of: view)
+    static func add(_ animations: @escaping VoidBlock, to view: UIView) {
+        let ptr: UInt = viewPtr(of: view)
+
+        guard let queued = queue[ptr], !queued.isEmpty else {
+            return UIView.animate(animations: animations)
+        }
+    }
+
+    // MARK: - Logic
+
+
+
+    private static func append(_ animations: @escaping VoidBlock, to view: UIView) {
+        let ptr: UInt = viewPtr(of: view)
         let newAnimation: ViewAnimation = ViewAnimation(
             view: view, animations: animations
         )
-        append(newAnimation, to: viewPtr)
+        append(newAnimation, to: ptr)
     }
 
     // MARK: - Helpers
@@ -264,6 +273,64 @@ final class ViewAnimationQueue {
         var mutated = existing
         mutated.append(animation)
         queue[viewPtr] = mutated
+    }
+
+    private static func pendingAnimations(for view: UIView) -> [Animation] {
+        let ptr: UInt = viewPtr(of: view)
+        let pending: [Animation] = queue[ptr] ?? [Animation]()
+
+        return pending
+    }
+
+    private static func state(for view: UIView) -> State {
+        let ptr: UInt = viewPtr(of: view)
+        let state: State = states[ptr] ?? .possible
+
+        return state
+    }
+
+    private static func action(for view: UIView) -> Action {
+        let state: State = self.state(for: view)
+        let pending: [Animation] = pendingAnimations(for: view)
+
+        if pending.isEmpty, state == .possible {
+            return .animate
+        }
+
+        if pending.isEmpty, state == .animating {
+            return .queue
+        }
+
+        if !pending.isEmpty, state == .possible {
+            return .takeNext
+        }
+
+        if !pending.isEmpty, state == .animating {
+            return .queue
+        }
+    }
+
+    private static func viewPtr(of view: UIView) -> UInt {
+        return Memory.ptr(of: view)
+    }
+
+    // MARK: - State
+
+    private enum State {
+        // case none
+        case possible
+        case animating
+    }
+
+    private enum Action {
+        case queue
+        case animate
+        case takeNext
+    }
+
+    struct Animation {
+        let view: UIView
+        let animations: VoidBlock
     }
 }
 
