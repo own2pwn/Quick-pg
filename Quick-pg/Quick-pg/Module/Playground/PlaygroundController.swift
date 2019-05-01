@@ -16,32 +16,32 @@ public enum QuickViewType {
 }
 
 final class ViewProducer: EPView {
-    // MARK: - Touches
+    // MARK: - Members
 
     private var state: State = .none
 
     private var producedView: EPView?
 
-    // MARK: Overrides
+    // MARK: - Touches
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
         update(with: .possible)
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
         let moveDelta: CGPoint = self.moveDelta(from: touches)
         update(with: .moved(moveDelta))
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_: Set<UITouch>, with _: UIEvent?) {
         update(with: .none)
     }
 
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesCancelled(_: Set<UITouch>, with _: UIEvent?) {
         update(with: .none)
     }
 
-    // MARK: - Logic
+    // MARK: - Update
 
     private func update(with updated: State) {
         guard updated != state else {
@@ -49,18 +49,9 @@ final class ViewProducer: EPView {
         }
         let action: Action = self.action(for: updated)
         handle(action)
-
-//        let current: State = state
-//        state = updated
-//
-//        if current == .none, updated == .possible {
-//            return onInteractionPossible()
-//        }
-//
-//        if updated == .none {
-//            return onInteractionEnded()
-//        }
     }
+
+    // MARK: - Action handling
 
     private func handle(_ action: Action) {
         switch action {
@@ -73,18 +64,12 @@ final class ViewProducer: EPView {
         }
     }
 
-    // MARK: - Actions
+    // MARK: - Action
 
     private func produce() {
         let newView: EPView = EPView()
-        newView.backgroundColor = backgroundColor
-        newView.layer.cornerRadius = layer.cornerRadius
-        newView.bounds = bounds
+        newView.copy(of: self)
 
-        // todo extension for cgpoint from cgrect
-        // newView.frame.origin = CGPoint(x: bounds.midX, y: bounds.midY)
-
-        let boundsCenter: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
         let centerInContainer = convert(bounds.center, to: container)
         newView.center = centerInContainer
 
@@ -93,10 +78,10 @@ final class ViewProducer: EPView {
     }
 
     private func adjust(by delta: CGPoint) {
-        producedView?.frame.origin += delta
+        producedView?.adjustOrigin(by: delta)
     }
 
-    // MARK: - Helpers
+    // MARK: - Logic
 
     private func action(for updated: State) -> Action {
         switch updated {
@@ -108,6 +93,8 @@ final class ViewProducer: EPView {
             return .none
         }
     }
+
+    // MARK: - Helpers
 
     private func moveDelta(from touches: Set<UITouch>) -> CGPoint {
         guard let touch = touches.first else {
@@ -124,7 +111,7 @@ final class ViewProducer: EPView {
         return current - previous
     }
 
-    // MARK: - State
+    // MARK: - Types
 
     private enum State: Hashable {
         case none
@@ -399,5 +386,17 @@ extension CGPoint: Hashable {
 public extension CGRect {
     var center: CGPoint {
         return CGPoint(x: midX, y: midY)
+    }
+}
+
+private extension UIView {
+    func copy(of other: UIView) {
+        bounds = other.bounds
+        backgroundColor = other.backgroundColor
+        layer.cornerRadius = other.layer.cornerRadius
+    }
+
+    func adjustOrigin(by delta: CGPoint) {
+        frame.origin += delta
     }
 }
