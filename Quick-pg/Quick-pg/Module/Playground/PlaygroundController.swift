@@ -19,12 +19,16 @@ final class _InteractiveView: EPShadowView {}
 
 protocol IViewProducer: class {
     var onProduced: Signal<_InteractiveView> { get }
+
+    var onInteractionEnded: Signal<_InteractiveView> { get }
 }
 
 final class ViewProducer: EPView, IViewProducer {
     // MARK: - Interface
 
     lazy var onProduced = Signal<_InteractiveView>()
+
+    lazy var onInteractionEnded = Signal<_InteractiveView>()
 
     // MARK: - Members
 
@@ -77,8 +81,8 @@ final class ViewProducer: EPView, IViewProducer {
             produce()
         case let .adjust(point):
             adjust(by: point)
-        case .none:
-            break
+        case .finish:
+            finish()
         }
     }
 
@@ -113,14 +117,11 @@ final class ViewProducer: EPView, IViewProducer {
         producedView?.adjustOrigin(by: delta)
     }
 
-    private func animate(produced view: UIView) {
-        let newCenterDelta: CGPoint = CGPoint(x: 24, y: -24)
-        view.alpha = 0
+    private func finish() {
+        assert(producedView != nil)
 
-        UIView.animate {
-            view.alpha = 1
-            view.frame.origin.adjust(by: newCenterDelta)
-        }
+        onInteractionEnded.tell(producedView)
+        producedView = nil
     }
 
     // MARK: - Logic
@@ -132,7 +133,7 @@ final class ViewProducer: EPView, IViewProducer {
         case let .moved(point):
             return .adjust(point)
         case .none:
-            return .none
+            return .finish
         }
     }
 
@@ -171,8 +172,6 @@ final class ViewProducer: EPView, IViewProducer {
 
     private func make() -> _InteractiveView {
         let view: _InteractiveView = _InteractiveView(frame: bounds)
-        //view.bounds = bounds
-        //view.center = center
         view.backgroundColor = #colorLiteral(red: 0.9309999943, green: 0.9462000728, blue: 0.9499999881, alpha: 1)
         view.contentView.layer.cornerRadius = layer.cornerRadius
 
@@ -185,14 +184,14 @@ final class ViewProducer: EPView, IViewProducer {
         return view
     }
 
-    // MARK: - Observers
+    private func animate(produced view: UIView) {
+        let newCenterDelta: CGPoint = CGPoint(x: 24, y: -24)
+        view.alpha = 0
 
-    private func onInteractionPossible() {
-        UIView.serial(animation: .scaleDown(self))
-    }
-
-    private func onInteractionEnded() {
-        UIView.serial(animation: .reset(self))
+        UIView.animate {
+            view.alpha = 1
+            view.frame.origin.adjust(by: newCenterDelta)
+        }
     }
 
     // MARK: - Members
@@ -219,7 +218,7 @@ private enum State {
 }
 
 private enum Action {
-    case none
+    case finish
     case produce
     case adjust(CGPoint)
 }
@@ -285,6 +284,9 @@ final class PlaygroundDockView: EPShadowCardView {
     override func setup() {
         interactiveView.onProduced
             .listen(action: handle)
+
+        interactiveView.onInteractionEnded
+            .listen(action: handleEnd)
     }
 
     // MARK: - Helpers
@@ -292,8 +294,40 @@ final class PlaygroundDockView: EPShadowCardView {
     private func handle(produced view: _InteractiveView) {
         container.addSubview(view)
 
-        let centerInContainer = convert(bounds.center, to: container)
+        let centerInContainer = convert(contentView.bounds.center, to: container)
         view.center = centerInContainer
+    }
+
+    private func handleEnd(with view: _InteractiveView) {
+        let mappedRect: CGRect = convert(contentView.frame, to: container)
+        let insideDock: Bool = mappedRect.intersects(view.frame)
+
+        if insideDock {
+            kill(view: view)
+        }
+    }
+
+    private func kill(view: UIView) {
+        UIView.animateKeyframes(withDuration: 0.8, delay: 0, options: [.calculationModeCubic, .allowUserInteraction], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.6, animations: {
+                view.alpha = 0
+            })
+
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.7, animations: {
+                view.transform = CGAffineTransform.identity.scaledBy(x: 0.3, y: 0.3)
+            })
+
+            UIView.addKeyframe(withRelativeStartTime: 0.7, relativeDuration: 0.9, animations: {
+                view.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+            })
+
+//            UIView.addKeyframe(withRelativeStartTime: 0.7, relativeDuration: 1, animations: {
+//                view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+//            })
+
+        }) { _ in
+            view.removeFromSuperview()
+        }
     }
 
     // MARK: - Layout
