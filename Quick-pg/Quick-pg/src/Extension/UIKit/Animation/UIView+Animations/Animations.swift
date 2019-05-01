@@ -10,25 +10,25 @@ import EPUIKit
 import UIKit
 
 public enum Animations {
+    case reset(UIView)
     case scaleDown(UIView)
-    case resetScale(UIView)
 
     var animationBlock: VoidBlock {
         switch self {
+        case let .reset(view):
+            return { view.transform = CGAffineTransform.identity }
+
         case let .scaleDown(view):
             return { view.transform = CGAffineTransform.identity.scaledBy(x: 0.92, y: 0.92) }
-
-        case let .resetScale(view):
-            return { view.transform = CGAffineTransform.identity }
         }
     }
 
     var subject: UIView {
         switch self {
-        case let .scaleDown(view):
+        case let .reset(view):
             return view
 
-        case let .resetScale(view):
+        case let .scaleDown(view):
             return view
         }
     }

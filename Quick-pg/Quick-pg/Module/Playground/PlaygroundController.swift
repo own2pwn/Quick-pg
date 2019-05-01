@@ -20,7 +20,7 @@ final class ViewProducer: EPView {
 
     private var state: State = .none
 
-    private var producedView: EPView?
+    private var producedView: UIView?
 
     // MARK: - Touches
 
@@ -44,14 +44,22 @@ final class ViewProducer: EPView {
     // MARK: - Update
 
     private func update(with updated: State) {
-        guard updated != state else {
+        act(for: updated)
+        guard state.differs(from: updated) else {
             return
         }
-        let action: Action = self.action(for: updated)
-        handle(action)
+        // print("\(state) -> \(updated)")
+        animate(updated)
+
+        state = updated
     }
 
     // MARK: - Action handling
+
+    private func act(for updated: State) {
+        let action: Action = self.action(for: updated)
+        handle(action)
+    }
 
     private func handle(_ action: Action) {
         switch action {
@@ -59,7 +67,25 @@ final class ViewProducer: EPView {
             produce()
         case let .adjust(point):
             adjust(by: point)
-        default:
+        case .none:
+            break
+        }
+    }
+
+    // MARK: - Animation handling
+
+    private func animate(_ updated: State) {
+        let animation: Animation = self.animation(for: updated)
+        handle(animation)
+    }
+
+    private func handle(_ animation: Animation) {
+        switch animation {
+        case .reset:
+            UIView.serial(animation: .reset(self))
+        case .scaleDown:
+            UIView.serial(animation: .scaleDown(self))
+        case .none:
             break
         }
     }
@@ -67,14 +93,20 @@ final class ViewProducer: EPView {
     // MARK: - Action
 
     private func produce() {
-        let newView: EPView = EPView()
-        newView.copy(of: self)
+        let view: UIView = make()
+        container.addSubview(view)
 
-        let centerInContainer = convert(bounds.center, to: container)
-        newView.center = centerInContainer
+        animate(produced: view)
+    }
 
-        container.addSubview(newView)
-        producedView = newView
+    private func animate(produced view: UIView) {
+        let newCenterDelta: CGPoint = CGPoint(x: 24, y: -24)
+        view.alpha = 0
+
+        UIView.animate {
+            view.alpha = 1
+            view.frame.origin.adjust(by: newCenterDelta)
+        }
     }
 
     private func adjust(by delta: CGPoint) {
@@ -90,6 +122,22 @@ final class ViewProducer: EPView {
         case let .moved(point):
             return .adjust(point)
         case .none:
+            return .none
+        }
+    }
+
+    private func animation(for updated: State) -> Animation {
+        switch (state, updated) {
+        case (.none, .possible):
+            return .scaleDown
+
+        case (.none, .none):
+            return .none
+
+        case (_, .none):
+            return .reset
+
+        default:
             return .none
         }
     }
@@ -111,30 +159,22 @@ final class ViewProducer: EPView {
         return current - previous
     }
 
-    // MARK: - Types
+    private func make() -> EPShadowView {
+        let view: EPShadowView = EPShadowView()
+        view.bounds = bounds
+        view.backgroundColor = #colorLiteral(red: 0.9309999943, green: 0.9462000728, blue: 0.9499999881, alpha: 1)
+        view.contentView.layer.cornerRadius = layer.cornerRadius
 
-    private enum State: Hashable {
-        case none
-        case possible
+        view.shadow = Shadow(
+            color: #colorLiteral(red: 0.1499999464, green: 0.1499999464, blue: 0.1499999464, alpha: 1), radius: 8,
+            offset: .zero, opacity: 0.3
+        )
 
-        /// dx move
-        case moved(CGPoint)
-        // case interacting
+        let centerInContainer = convert(bounds.center, to: container)
+        view.center = centerInContainer
 
-        static func == (lhs: State, rhs: State) -> Bool {
-            return stateEquals(lhs, to: rhs)
-        }
-    }
-
-    private enum Action {
-        case none
-        case produce
-        case adjust(CGPoint)
-    }
-
-    private enum Animation {
-        case reset
-        case scaleDown
+        producedView = view
+        return view
     }
 
     // MARK: - Observers
@@ -144,7 +184,7 @@ final class ViewProducer: EPView {
     }
 
     private func onInteractionEnded() {
-        UIView.serial(animation: .resetScale(self))
+        UIView.serial(animation: .reset(self))
     }
 
     // MARK: - Members
@@ -157,25 +197,51 @@ final class ViewProducer: EPView {
         self.container = container
         super.init(frame: .zero)
     }
+}
 
-    // MARK: - Comparable
+// MARK: - Types
 
-    private static func stateEquals(_ lhs: State, to rhs: State) -> Bool {
+private enum State {
+    case none
+    case possible
+
+    /// dx move
+    case moved(CGPoint)
+    // case interacting
+}
+
+private enum Action {
+    case none
+    case produce
+    case adjust(CGPoint)
+}
+
+private enum Animation {
+    case none
+    case reset
+    case scaleDown
+}
+
+private extension State {
+    func equals(to rhs: State) -> Bool {
+        let lhs: State = self
         switch (lhs, rhs) {
-        case (.none, .none):
-            return true
-        case (.none, _):
+        case (.none, .none),
+             (.possible, .possible),
+             (.moved, .moved): return true
+        default:
             return false
+        }
+    }
 
-        case (.possible, .possible):
+    func differs(from rhs: State) -> Bool {
+        let lhs: State = self
+        switch (lhs, rhs) {
+        case (.none, .none),
+             (.possible, .possible),
+             (.moved, .moved): return false
+        default:
             return true
-        case (.possible, _):
-            return false
-
-        case let (.moved(lp), .moved(rp)):
-            return lp == rp
-        case (.moved, _):
-            return false
         }
     }
 }
@@ -210,8 +276,8 @@ final class PlaygroundDockView: EPShadowCardView {
 
     override func layout() {
         interactiveView.pin
-            .height(100)
-            .width(108)
+            .height(84)
+            .width(88)
             .center()
     }
 }
@@ -317,8 +383,7 @@ final class PlaygroundController: EYController {
 
     private func layoutDock() {
         dockView.pin
-            .height(142)
-            // .horizontally(56)
+            .height(108)
             .aspectRatio(4.8)
             .hCenter()
             .bottom(view.pin.safeArea)
@@ -398,5 +463,16 @@ private extension UIView {
 
     func adjustOrigin(by delta: CGPoint) {
         frame.origin += delta
+    }
+}
+
+public extension CGPoint {
+    func adjusted(by point: CGPoint) -> CGPoint {
+        return CGPoint(x: x + point.x, y: y + point.y)
+    }
+
+    mutating func adjust(by point: CGPoint) {
+        x = x + point.x
+        y = y + point.y
     }
 }
