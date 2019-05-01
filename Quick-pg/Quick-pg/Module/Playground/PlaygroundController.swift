@@ -320,20 +320,23 @@ final class ViewAnimationQueue {
     private static func action(for view: UIView) -> Action {
         let state: State = self.state(for: view)
         let pending: [Animation] = pendingAnimations(for: view)
+        let queueIsEmpty: Bool = !pending.isEmpty
 
-        if pending.isEmpty, state == .possible {
+        return action(isQueueEmpty: queueIsEmpty, state: state)
+    }
+
+    private static func action(isQueueEmpty: Bool, state: State) -> Action {
+        switch (isQueueEmpty, state) {
+        case (true, .possible):
             return .animate
-        }
 
-        if pending.isEmpty, state == .animating {
+        case (true, .animating):
             return .queue
-        }
 
-        if !pending.isEmpty, state == .possible {
+        case (false, .possible):
             return .takeNext
-        }
 
-        if !pending.isEmpty, state == .animating {
+        case (false, .animating):
             return .queue
         }
     }
