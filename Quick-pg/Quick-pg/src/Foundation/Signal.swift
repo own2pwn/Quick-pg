@@ -40,10 +40,13 @@ final class Signal<T>: SignalProducer, SignalConsumer {
     }
 
     func tell<PU>(_ arg: PU) {
+        guard let unboxed = arg as? T else {
+            assertionFailure()
+            return
+        }
+
         actions.forEach { (action: (T) -> Void) in
-            if let casted = arg as? T {
-                action(casted)
-            }
+            action(unboxed)
         }
     }
 

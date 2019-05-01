@@ -15,7 +15,17 @@ public enum QuickViewType {
     case plain
 }
 
-final class ViewProducer: EPView {
+final class _InteractiveView: EPShadowView {}
+
+protocol IViewProducer: class {
+    var onProduced: Signal<_InteractiveView> { get }
+}
+
+final class ViewProducer: EPView, IViewProducer {
+    // MARK: - Interface
+
+    lazy var onProduced = Signal<_InteractiveView>()
+
     // MARK: - Members
 
     private var state: State = .none
@@ -93,10 +103,14 @@ final class ViewProducer: EPView {
     // MARK: - Action
 
     private func produce() {
-        let view: UIView = make()
-        container.addSubview(view)
+        let view: _InteractiveView = make()
+        onProduced.tell(view)
 
         animate(produced: view)
+    }
+
+    private func adjust(by delta: CGPoint) {
+        producedView?.adjustOrigin(by: delta)
     }
 
     private func animate(produced view: UIView) {
@@ -107,10 +121,6 @@ final class ViewProducer: EPView {
             view.alpha = 1
             view.frame.origin.adjust(by: newCenterDelta)
         }
-    }
-
-    private func adjust(by delta: CGPoint) {
-        producedView?.adjustOrigin(by: delta)
     }
 
     // MARK: - Logic
@@ -159,9 +169,10 @@ final class ViewProducer: EPView {
         return current - previous
     }
 
-    private func make() -> EPShadowView {
-        let view: EPShadowView = EPShadowView()
-        view.bounds = bounds
+    private func make() -> _InteractiveView {
+        let view: _InteractiveView = _InteractiveView(frame: bounds)
+        //view.bounds = bounds
+        //view.center = center
         view.backgroundColor = #colorLiteral(red: 0.9309999943, green: 0.9462000728, blue: 0.9499999881, alpha: 1)
         view.contentView.layer.cornerRadius = layer.cornerRadius
 
@@ -169,9 +180,6 @@ final class ViewProducer: EPView {
             color: #colorLiteral(red: 0.1499999464, green: 0.1499999464, blue: 0.1499999464, alpha: 1), radius: 8,
             offset: .zero, opacity: 0.3
         )
-
-        let centerInContainer = convert(bounds.center, to: container)
-        view.center = centerInContainer
 
         producedView = view
         return view
@@ -250,7 +258,7 @@ final class PlaygroundDockView: EPShadowCardView {
     // MARK: - Views
 
     private lazy var interactiveView: ViewProducer = {
-        let view = ViewProducer(in: container)
+        let view = ViewProducer(in: self)
         view.backgroundColor = #colorLiteral(red: 0.436576277, green: 0.8080026507, blue: 0.5136813521, alpha: 1)
         view.layer.cornerRadius = 12
 
@@ -270,6 +278,22 @@ final class PlaygroundDockView: EPShadowCardView {
     init(in container: UIView) {
         self.container = container
         super.init(frame: .zero)
+    }
+
+    // MARK: - Setup
+
+    override func setup() {
+        interactiveView.onProduced
+            .listen(action: handle)
+    }
+
+    // MARK: - Helpers
+
+    private func handle(produced view: _InteractiveView) {
+        container.addSubview(view)
+
+        let centerInContainer = convert(bounds.center, to: container)
+        view.center = centerInContainer
     }
 
     // MARK: - Layout
