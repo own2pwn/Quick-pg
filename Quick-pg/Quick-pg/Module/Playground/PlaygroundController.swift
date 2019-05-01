@@ -68,15 +68,17 @@ final class ViewProducer: EPView {
     }
 
     private func onInteractionPossible() {
-        UIView.animate {
+        let animation: VoidBlock = {
             self.transform = CGAffineTransform.identity.scaledBy(x: 0.92, y: 0.92)
         }
+        UIView.serial(animations: animation, on: self)
     }
 
     private func onInteractionEnded() {
-        UIView.animate {
+        let animation: VoidBlock = {
             self.transform = CGAffineTransform.identity
         }
+        UIView.serial(animations: animation, on: self)
     }
 
     // MARK: -
@@ -229,8 +231,8 @@ public extension UIView {
 }
 
 public extension UIView {
-    func serial(animations: @escaping () -> Void, on view: UIView) {
-        //UIView.animate(withDuration: animationDuration, animations: animations)
+    static func serial(animations: @escaping () -> Void, on view: UIView) {
+        ViewAnimationQueue.run(animations, on: view)
     }
 }
 
@@ -254,12 +256,6 @@ final class ViewAnimationQueue {
         case .queue:
             queueAnimation(animations, for: view)
         }
-
-        let ptr: UInt = viewPtr(of: view)
-
-        guard let queued = queue[ptr], !queued.isEmpty else {
-            return UIView.animate(animations: animations)
-        }
     }
 
     // MARK: - Logic
@@ -268,6 +264,8 @@ final class ViewAnimationQueue {
         set(state: .animating, for: view)
         UIView.animate(withDuration: UIView.animationDuration, animations: animations) { completed in
             assert(completed)
+            // print("=====>")
+
             self.set(state: .possible, for: view)
             self.animateNext(on: view)
         }
@@ -320,7 +318,7 @@ final class ViewAnimationQueue {
     private static func action(for view: UIView) -> Action {
         let state: State = self.state(for: view)
         let pending: [Animation] = pendingAnimations(for: view)
-        let queueIsEmpty: Bool = !pending.isEmpty
+        let queueIsEmpty: Bool = pending.isEmpty
 
         return action(isQueueEmpty: queueIsEmpty, state: state)
     }
@@ -471,7 +469,7 @@ public extension Array {
     }
 }
 
-//public extension Array {
+// public extension Array {
 //    @inlinable __consuming
 //    func takeFirst(n: Int) -> SubSequence {
 //        return dropFirst(n)
@@ -484,4 +482,4 @@ public extension Array {
 //        }
 //        return dropFirst()
 //    }
-//}
+// }
