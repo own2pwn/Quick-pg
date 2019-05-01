@@ -85,15 +85,14 @@ final class ViewProducer: EPView {
         // newView.frame.origin = CGPoint(x: bounds.midX, y: bounds.midY)
 
         let boundsCenter: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-        let thisViewOrigin = convert(boundsCenter, to: container)
-        newView.frame.origin = thisViewOrigin
+        let centerInContainer = convert(bounds.center, to: container)
+        newView.center = centerInContainer
 
         container.addSubview(newView)
         producedView = newView
     }
 
     private func adjust(by delta: CGPoint) {
-        //print("=> \(point)")
         producedView?.frame.origin += delta
     }
 
@@ -394,5 +393,11 @@ extension CGPoint: Hashable {
     public func hash(into hasher: inout Hasher) {
         x.hash(into: &hasher)
         y.hash(into: &hasher)
+    }
+}
+
+public extension CGRect {
+    var center: CGPoint {
+        return CGPoint(x: midX, y: midY)
     }
 }
