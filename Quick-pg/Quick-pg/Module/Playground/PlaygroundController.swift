@@ -68,17 +68,11 @@ final class ViewProducer: EPView {
     }
 
     private func onInteractionPossible() {
-        let animation: VoidBlock = {
-            self.transform = CGAffineTransform.identity.scaledBy(x: 0.92, y: 0.92)
-        }
-        UIView.serial(animations: animation, on: self)
+        UIView.serial(animation: .scaleDown(self))
     }
 
     private func onInteractionEnded() {
-        let animation: VoidBlock = {
-            self.transform = CGAffineTransform.identity
-        }
-        UIView.serial(animations: animation, on: self)
+        UIView.serial(animation: .resetScale(self))
     }
 
     // MARK: -
@@ -220,6 +214,21 @@ final class PlaygroundController: EYController {
     }
 }
 
+public enum Animations {
+    case scaleDown(UIView)
+    case resetScale(UIView)
+
+    var animationBlock: VoidBlock {
+        switch self {
+        case let .scaleDown(view):
+            return { view.transform = CGAffineTransform.identity.scaledBy(x: 0.92, y: 0.92) }
+
+        case let .resetScale(view):
+            return { view.transform = CGAffineTransform.identity }
+        }
+    }
+}
+
 public extension UIView {
     /// Animate changes to one or more views using `animationDuration` duration.
     static func animate(animations: @escaping () -> Void) {
@@ -233,6 +242,10 @@ public extension UIView {
 public extension UIView {
     static func serial(animations: @escaping () -> Void, on view: UIView) {
         ViewAnimationQueue.run(animations, on: view)
+    }
+
+    static func serial(animation: Animations) {
+        return serial(animations: animation.animationBlock)
     }
 }
 
