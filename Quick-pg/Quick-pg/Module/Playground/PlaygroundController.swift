@@ -49,20 +49,45 @@ final class ViewProducer: EPView {
     }
 
     private func update(with new: InteractionState) {
+        guard new != interactionState else {
+            return
+        }
+
         let current: InteractionState = interactionState
         interactionState = new
 
-        
+        // print("\(current) -> \(new)")
+
+        if current == .none, new == .possible {
+            return onInteractionPossible()
+        }
+
+        if (current == .interacting || true), new == .none {
+            return onInteractionEnded()
+        }
+    }
+
+    private func onInteractionPossible() {
+        UIView.animate {
+            self.transform = CGAffineTransform.identity.scaledBy(x: 0.92, y: 0.92)
+        }
+    }
+
+    private func onInteractionEnded() {
+        UIView.animate {
+            self.transform = CGAffineTransform.identity
+        }
     }
 
     // MARK: -
+
 }
 
 final class PlaygroundDockView: EPShadowCardView {
     // MARK: - Views
 
-    private let interactiveView: InteractiveView = {
-        let view = InteractiveView()
+    private let interactiveView: ViewProducer = {
+        let view = ViewProducer()
         view.backgroundColor = #colorLiteral(red: 0.436576277, green: 0.8080026507, blue: 0.5136813521, alpha: 1)
         view.layer.cornerRadius = 12
 
@@ -192,3 +217,128 @@ final class PlaygroundController: EYController {
             .marginBottom(24)
     }
 }
+
+public extension UIView {
+    /// Animate changes to one or more views using `animationDuration` duration.
+    static func animate(animations: @escaping () -> Void) {
+        UIView.animate(withDuration: animationDuration, animations: animations)
+    }
+
+    /// Default duration when using extension methods.
+    static var animationDuration: TimeInterval = 0.25
+}
+
+public extension UIView {
+    func serial(animations: @escaping () -> Void, on view: UIView) {
+        //UIView.animate(withDuration: animationDuration, animations: animations)
+    }
+}
+
+struct ViewAnimation {
+    let view: UIView
+    let animations: VoidBlock
+}
+
+final class ViewAnimationQueue {
+    // MARK: - Members
+
+    private static var queue: [UInt: [ViewAnimation]] = [:]
+
+    // MARK: - Interface
+
+    static func append(_ animations: @escaping VoidBlock, to view: UIView) {
+        let viewPtr: UInt = Memory.ptr(of: view)
+        let newAnimation: ViewAnimation = ViewAnimation(
+            view: view, animations: animations
+        )
+        append(newAnimation, to: viewPtr)
+    }
+
+    // MARK: - Helpers
+
+    private static func append(_ animation: ViewAnimation, to viewPtr: UInt) {
+        guard let existing: [ViewAnimation] = queue[viewPtr] else {
+            return queue[viewPtr] = [animation]
+        }
+
+        var mutated = existing
+        mutated.append(animation)
+        queue[viewPtr] = mutated
+    }
+}
+
+final class SharedCache {
+    // MARK: - Members
+
+    private static var cache: [String: Any] = [:]
+
+    // MARK: - Interface
+
+    static func set(_ value: Any, for key: String) {
+        cache[key] = value
+    }
+
+    static func get(key: String) -> Any? {
+        return cache[key]
+    }
+
+    static func get<T>(key: String) -> T? {
+        return cache[key] as? T
+    }
+
+    static func remove(key: String) -> Any? {
+        return cache.removeValue(forKey: key)
+    }
+
+    // MARK: - Init
+
+    private init() {}
+}
+
+final class GenericCache<T: Hashable> {
+    // MARK: - Types
+
+    typealias CacheType = [T: Any]
+
+    // MARK: - Members
+
+    private static var cache: CacheType {
+        get {
+            let boxed: CacheType? = SharedCache.get(key: typeName)
+            return boxed.unsafelyUnwrapped
+        } set {
+            SharedCache.set(newValue, for: typeName)
+        }
+    }
+
+    // MARK: - Interface
+
+    static func set(_ value: Any, for key: T) {
+        cache[key] = value
+    }
+
+    static func get(key: T) -> Any? {
+        return cache[key]
+    }
+
+    static func remove(key: T) -> Any? {
+        return cache.removeValue(forKey: key)
+    }
+
+    // MARK: - Helpers
+
+    private static var typeName: String {
+        return "\(type(of: T.self))"
+    }
+
+    // MARK: - Init
+
+    private init() {}
+}
+
+enum Memory {
+    static func ptr<T: AnyObject>(of object: T) -> UInt {
+        return unsafeBitCast(object, to: UInt.self)
+    }
+}
+
