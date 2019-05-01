@@ -59,7 +59,7 @@ final class AnimationQueue {
         append(newAnimation, for: view)
     }
 
-    // MARK: - Helpers
+    // MARK: - Logic
 
     private static func append(_ animation: Animation, for view: UIView) {
         let ptr: UInt = viewPtr(of: view)
@@ -71,8 +71,6 @@ final class AnimationQueue {
         mutated.append(animation)
         queue[ptr] = mutated
     }
-
-    // MARK: - Logic
 
     private static func pendingAnimations(for view: UIView) -> [Animation] {
         let ptr: UInt = viewPtr(of: view)
