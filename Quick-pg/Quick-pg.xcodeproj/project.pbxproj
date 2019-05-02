@@ -44,7 +44,7 @@
 		DE6B5E2E2277007300CE78B6 /* Montserrat Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE6B5E242277007300CE78B6 /* Montserrat Medium.ttf */; };
 		DE6B5E2F2277007300CE78B6 /* Montserrat SemiBold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE6B5E252277007300CE78B6 /* Montserrat SemiBold Italic.ttf */; };
 		DE6B5E392277009900CE78B6 /* Const+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6B5E382277009900CE78B6 /* Const+Font.swift */; };
-		DED2DBA022781244000C2DD2 /* InteractivePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DB9F22781244000C2DD2 /* InteractivePopup.swift */; };
+		DED2DBA022781244000C2DD2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DB9F22781244000C2DD2 /* PopupView.swift */; };
 		DED2DBA522781279000C2DD2 /* Bool+Reverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA422781279000C2DD2 /* Bool+Reverse.swift */; };
 		DED2DBA8227812B2000C2DD2 /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA7227812B2000C2DD2 /* UIEdgeInsets+Extension.swift */; };
 		DED2DBAA227812C7000C2DD2 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA9227812C7000C2DD2 /* String+Length.swift */; };
@@ -55,6 +55,9 @@
 		DEE39E21225E17F80083406A /* __InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E20225E17F80083406A /* __InteractiveView.swift */; };
 		DEE39E23225E18320083406A /* SelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E22225E18320083406A /* SelectableView.swift */; };
 		DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE39E24225E1E540083406A /* RightSidePanelViewModel.swift */; };
+		DEFB34A7227B776A00E5C625 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34A6227B776A00E5C625 /* InteractiveView.swift */; };
+		DEFB34AB227B779600E5C625 /* ViewProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AA227B779600E5C625 /* ViewProducer.swift */; };
+		DEFB34AE227B77AE00E5C625 /* IViewProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AD227B77AE00E5C625 /* IViewProducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,7 +163,7 @@
 		DE6B5E252277007300CE78B6 /* Montserrat SemiBold Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat SemiBold Italic.ttf"; sourceTree = "<group>"; };
 		DE6B5E382277009900CE78B6 /* Const+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Const+Font.swift"; sourceTree = "<group>"; };
 		DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EPKit.xcodeproj; sourceTree = "<group>"; };
-		DED2DB9F22781244000C2DD2 /* InteractivePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopup.swift; sourceTree = "<group>"; };
+		DED2DB9F22781244000C2DD2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DED2DBA422781279000C2DD2 /* Bool+Reverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Reverse.swift"; sourceTree = "<group>"; };
 		DED2DBA7227812B2000C2DD2 /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
 		DED2DBA9227812C7000C2DD2 /* String+Length.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
@@ -171,6 +174,9 @@
 		DEE39E20225E17F80083406A /* __InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = __InteractiveView.swift; sourceTree = "<group>"; };
 		DEE39E22225E18320083406A /* SelectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableView.swift; sourceTree = "<group>"; };
 		DEE39E24225E1E540083406A /* RightSidePanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSidePanelViewModel.swift; sourceTree = "<group>"; };
+		DEFB34A6227B776A00E5C625 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
+		DEFB34AA227B779600E5C625 /* ViewProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProducer.swift; sourceTree = "<group>"; };
+		DEFB34AD227B77AE00E5C625 /* IViewProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IViewProducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,7 +261,7 @@
 			children = (
 				DE39FFED22627339006C64DB /* Interaction */,
 				DE39FFE2226272B4006C64DB /* EPView.swift */,
-				DED2DB9F22781244000C2DD2 /* InteractivePopup.swift */,
+				DED2DB9F22781244000C2DD2 /* PopupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				DE6B5E372277008700CE78B6 /* Const */,
+				DEFB34A9227B778800E5C625 /* View */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -581,6 +588,24 @@
 				DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DEFB34A9227B778800E5C625 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DEFB34AC227B77A600E5C625 /* Interface */,
+				DEFB34A6227B776A00E5C625 /* InteractiveView.swift */,
+				DEFB34AA227B779600E5C625 /* ViewProducer.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DEFB34AC227B77A600E5C625 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				DEFB34AD227B77AE00E5C625 /* IViewProducer.swift */,
+			);
+			path = Interface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -720,17 +745,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */,
-				DED2DBA022781244000C2DD2 /* InteractivePopup.swift in Sources */,
+				DED2DBA022781244000C2DD2 /* PopupView.swift in Sources */,
 				DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */,
 				DE55901222798ADF00BEA44F /* Memory.swift in Sources */,
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
 				DEE39E21225E17F80083406A /* __InteractiveView.swift in Sources */,
 				DE39FFD72262711D006C64DB /* InputValidatorTextField.swift in Sources */,
 				DE55900822798A6B00BEA44F /* AnimationQueue.swift in Sources */,
+				DEFB34AE227B77AE00E5C625 /* IViewProducer.swift in Sources */,
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
 				DE55900D22798AAE00BEA44F /* GenericCache+T.swift in Sources */,
 				DED2DBAF227812FD000C2DD2 /* String+Extension.swift in Sources */,
+				DEFB34AB227B779600E5C625 /* ViewProducer.swift in Sources */,
 				DED2DBA522781279000C2DD2 /* Bool+Reverse.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
 				DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */,
@@ -752,6 +779,7 @@
 				DE55900422798A3E00BEA44F /* UIView+Animations.swift in Sources */,
 				DE55900622798A4B00BEA44F /* Animations.swift in Sources */,
 				DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */,
+				DEFB34A7227B776A00E5C625 /* InteractiveView.swift in Sources */,
 				DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */,
 				DE60B17222620B9800FC61DB /* Optional+Fallback.swift in Sources */,
 			);

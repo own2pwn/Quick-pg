@@ -1,5 +1,5 @@
 //
-//  InteractivePopup.swift
+//  PopupView.swift
 //  Quick-pg
 //
 //  Created by Evgeniy on 30/04/2019.
@@ -9,7 +9,7 @@
 import EPUIKit
 import UIKit
 
-final class InteractivePopup: EPShadowCardView {
+final class PopupView: EPShadowCardView {
     // MARK: - Views
 
     private let doneButton: EPTitledButton = {
