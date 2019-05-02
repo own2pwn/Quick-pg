@@ -16,6 +16,13 @@
 		DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFDF22627201006C64DB /* StaticPlaceholderValidatorTextField.swift */; };
 		DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFEB22627306006C64DB /* UIColor+Hex.swift */; };
 		DE39FFEF226273D8006C64DB /* SidePanelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */; };
+		DE55900422798A3E00BEA44F /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55900322798A3E00BEA44F /* UIView+Animations.swift */; };
+		DE55900622798A4B00BEA44F /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55900522798A4B00BEA44F /* Animations.swift */; };
+		DE55900822798A6B00BEA44F /* AnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55900722798A6B00BEA44F /* AnimationQueue.swift */; };
+		DE55900B22798AA300BEA44F /* SharedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55900A22798AA300BEA44F /* SharedCache.swift */; };
+		DE55900D22798AAE00BEA44F /* GenericCache+T.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55900C22798AAE00BEA44F /* GenericCache+T.swift */; };
+		DE55900F22798ACC00BEA44F /* Array+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55900E22798ACC00BEA44F /* Array+Access.swift */; };
+		DE55901222798ADF00BEA44F /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55901122798ADF00BEA44F /* Memory.swift */; };
 		DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */; };
 		DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16722620B4300FC61DB /* Relay<T>.swift */; };
 		DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */; };
@@ -124,6 +131,13 @@
 		DE39FFE2226272B4006C64DB /* EPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPView.swift; sourceTree = "<group>"; };
 		DE39FFEB22627306006C64DB /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelTextField.swift; sourceTree = "<group>"; };
+		DE55900322798A3E00BEA44F /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		DE55900522798A4B00BEA44F /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		DE55900722798A6B00BEA44F /* AnimationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationQueue.swift; sourceTree = "<group>"; };
+		DE55900A22798AA300BEA44F /* SharedCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCache.swift; sourceTree = "<group>"; };
+		DE55900C22798AAE00BEA44F /* GenericCache+T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenericCache+T.swift"; sourceTree = "<group>"; };
+		DE55900E22798ACC00BEA44F /* Array+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Access.swift"; sourceTree = "<group>"; };
+		DE55901122798ADF00BEA44F /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		DE60B15A2261FB9700FC61DB /* LivePlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePlaceholderTextField.swift; sourceTree = "<group>"; };
 		DE60B16722620B4300FC61DB /* Relay<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Relay<T>.swift"; sourceTree = "<group>"; };
 		DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosureBox<T>.swift"; sourceTree = "<group>"; };
@@ -258,6 +272,8 @@
 		DE39FFE5226272CF006C64DB /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				DE55901022798AD600BEA44F /* Memory */,
+				DE55900922798A9A00BEA44F /* Cache */,
 				DED2DBA322781269000C2DD2 /* Bool */,
 				DE39FFEA226272E8006C64DB /* Collection */,
 				DE39FFE9226272E6006C64DB /* String */,
@@ -269,6 +285,7 @@
 		DE39FFE6226272DC006C64DB /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				DE558FFF22798A2B00BEA44F /* Animation */,
 				DED2DBAB227812D2000C2DD2 /* TextField */,
 				DED2DBA6227812A6000C2DD2 /* Insets */,
 				DE39FFE7226272DE006C64DB /* Color */,
@@ -306,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				DE60B17722620BCE00FC61DB /* Array+Validators.swift */,
+				DE55900E22798ACC00BEA44F /* Array+Access.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -317,6 +335,41 @@
 				DEE39E20225E17F80083406A /* InteractiveView.swift */,
 			);
 			path = Interaction;
+			sourceTree = "<group>";
+		};
+		DE558FFF22798A2B00BEA44F /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				DE55900222798A3300BEA44F /* UIView+Animations */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		DE55900222798A3300BEA44F /* UIView+Animations */ = {
+			isa = PBXGroup;
+			children = (
+				DE55900522798A4B00BEA44F /* Animations.swift */,
+				DE55900322798A3E00BEA44F /* UIView+Animations.swift */,
+				DE55900722798A6B00BEA44F /* AnimationQueue.swift */,
+			);
+			path = "UIView+Animations";
+			sourceTree = "<group>";
+		};
+		DE55900922798A9A00BEA44F /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				DE55900A22798AA300BEA44F /* SharedCache.swift */,
+				DE55900C22798AAE00BEA44F /* GenericCache+T.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		DE55901022798AD600BEA44F /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				DE55901122798ADF00BEA44F /* Memory.swift */,
+			);
+			path = Memory;
 			sourceTree = "<group>";
 		};
 		DE60B16322620B1700FC61DB /* tmp */ = {
@@ -669,16 +722,20 @@
 				DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */,
 				DED2DBA022781244000C2DD2 /* InteractivePopup.swift in Sources */,
 				DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */,
+				DE55901222798ADF00BEA44F /* Memory.swift in Sources */,
 				DE09A1DC225DEB2C00E71E6C /* PlaygroundController.swift in Sources */,
 				DEE39E21225E17F80083406A /* InteractiveView.swift in Sources */,
 				DE39FFD72262711D006C64DB /* InputValidatorTextField.swift in Sources */,
+				DE55900822798A6B00BEA44F /* AnimationQueue.swift in Sources */,
 				DE60B15B2261FB9700FC61DB /* LivePlaceholderTextField.swift in Sources */,
 				DE60B17822620BCE00FC61DB /* Array+Validators.swift in Sources */,
+				DE55900D22798AAE00BEA44F /* GenericCache+T.swift in Sources */,
 				DED2DBAF227812FD000C2DD2 /* String+Extension.swift in Sources */,
 				DED2DBA522781279000C2DD2 /* Bool+Reverse.swift in Sources */,
 				DEE39E1C225E17200083406A /* Signal.swift in Sources */,
 				DED978E4226221E700D306CA /* PlaygroundViewModel.swift in Sources */,
 				DE60B17422620BAE00FC61DB /* ColorPlaceholderTextField.swift in Sources */,
+				DE55900F22798ACC00BEA44F /* Array+Access.swift in Sources */,
 				DED2DBAD227812DC000C2DD2 /* UITextField+Caret.swift in Sources */,
 				DE60B17022620B8500FC61DB /* RightSidePanelView.swift in Sources */,
 				DE60B16C22620B6400FC61DB /* EPTextField.swift in Sources */,
@@ -688,9 +745,12 @@
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
 				DED2DBA8227812B2000C2DD2 /* UIEdgeInsets+Extension.swift in Sources */,
 				DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */,
+				DE55900B22798AA300BEA44F /* SharedCache.swift in Sources */,
 				DED2DBAA227812C7000C2DD2 /* String+Length.swift in Sources */,
 				DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */,
 				DE6B5E392277009900CE78B6 /* Const+Font.swift in Sources */,
+				DE55900422798A3E00BEA44F /* UIView+Animations.swift in Sources */,
+				DE55900622798A4B00BEA44F /* Animations.swift in Sources */,
 				DE60B16A22620B5400FC61DB /* ClosureBox<T>.swift in Sources */,
 				DE60B17622620BBE00FC61DB /* String+Validators.swift in Sources */,
 				DE60B17222620B9800FC61DB /* Optional+Fallback.swift in Sources */,
