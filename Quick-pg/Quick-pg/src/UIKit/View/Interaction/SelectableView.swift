@@ -14,7 +14,7 @@ protocol ISelectableView: class {
     func set(selected: Bool)
 }
 
-open class SelectableView: InteractiveView, ISelectableView {
+open class SelectableView: __InteractiveView, ISelectableView {
     // MARK: - Members
 
     public var isSelected: Bool = false

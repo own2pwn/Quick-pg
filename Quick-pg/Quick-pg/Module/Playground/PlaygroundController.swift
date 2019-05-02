@@ -15,7 +15,7 @@ public enum QuickViewType {
     case plain
 }
 
-final class _InteractiveView: EPShadowView {
+final class InteractiveView: EPShadowView {
     // MARK: - Static
 
     static let shadow: Shadow = Shadow(
@@ -28,7 +28,7 @@ final class _InteractiveView: EPShadowView {
     override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
         superview?.bringSubviewToFront(self)
         UIView.animate {
-            self.setShadow(_InteractiveView.shadow)
+            self.setShadow(InteractiveView.shadow)
         }
     }
 
@@ -68,17 +68,17 @@ final class _InteractiveView: EPShadowView {
 }
 
 protocol IViewProducer: class {
-    var onProduced: Signal<_InteractiveView> { get }
+    var onProduced: Signal<InteractiveView> { get }
 
-    var onInteractionEnded: Signal<_InteractiveView> { get }
+    var onInteractionEnded: Signal<InteractiveView> { get }
 }
 
 final class ViewProducer: EPView, IViewProducer {
     // MARK: - Interface
 
-    lazy var onProduced = Signal<_InteractiveView>()
+    lazy var onProduced = Signal<InteractiveView>()
 
-    lazy var onInteractionEnded = Signal<_InteractiveView>()
+    lazy var onInteractionEnded = Signal<InteractiveView>()
 
     // MARK: - Members
 
@@ -157,7 +157,7 @@ final class ViewProducer: EPView, IViewProducer {
     // MARK: - Action
 
     private func produce() {
-        let view: _InteractiveView = make()
+        let view: InteractiveView = make()
         onProduced.tell(view)
 
         animate(produced: view)
@@ -220,11 +220,11 @@ final class ViewProducer: EPView, IViewProducer {
         return current - previous
     }
 
-    private func make() -> _InteractiveView {
-        let view: _InteractiveView = _InteractiveView(frame: bounds)
+    private func make() -> InteractiveView {
+        let view: InteractiveView = InteractiveView(frame: bounds)
         view.backgroundColor = #colorLiteral(red: 0.9309999943, green: 0.9462000728, blue: 0.9499999881, alpha: 1)
         view.contentView.layer.cornerRadius = layer.cornerRadius
-        view.shadow = _InteractiveView.shadow
+        view.shadow = InteractiveView.shadow
 
         producedView = view
         return view
@@ -337,14 +337,14 @@ final class PlaygroundDockView: EPShadowCardView {
 
     // MARK: - Helpers
 
-    private func handle(produced view: _InteractiveView) {
+    private func handle(produced view: InteractiveView) {
         container.addSubview(view)
 
         let centerInContainer = convert(contentView.bounds.center, to: container)
         view.center = centerInContainer
     }
 
-    private func handleEnd(with view: _InteractiveView) {
+    private func handleEnd(with view: InteractiveView) {
         let mappedRect: CGRect = convert(contentView.frame, to: container)
         let insideDock: Bool = mappedRect.intersects(view.frame)
 
@@ -389,7 +389,7 @@ final class PlaygroundDockView: EPShadowCardView {
 final class PlaygroundController: EYController {
     // MARK: - Views
 
-    private let clickyView: InteractiveView = {
+    private let clickyView: __InteractiveView = {
         let view = SelectableView()
         view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.3568627451, blue: 0.4392156863, alpha: 1)
         view.layer.cornerRadius = 8

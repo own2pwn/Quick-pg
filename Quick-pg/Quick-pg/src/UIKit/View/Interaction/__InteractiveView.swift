@@ -1,5 +1,5 @@
 //
-//  InteractiveView.swift
+//  __InteractiveView.swift
 //  Quick-pg
 //
 //  Created by Evgeniy on 10/04/2019.
@@ -16,7 +16,7 @@ protocol QuickViewOut: class {
     var tapSignal: Signal<QuickView> { get }
 }
 
-open class InteractiveView: UIView, QuickView, QuickViewOut {
+open class __InteractiveView: UIView, QuickView, QuickViewOut {
     // MARK: - Output
 
     lazy var tapSignal = Signal<QuickView>()
