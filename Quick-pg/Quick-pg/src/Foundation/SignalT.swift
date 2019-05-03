@@ -1,29 +1,14 @@
 //
-//  Signal.swift
+//  SignalT.swift
 //  Quick-pg
 //
-//  Created by Evgeniy on 10/04/2019.
+//  Created by Evgeniy on 03/05/2019.
 //  Copyright © 2019 surge. All rights reserved.
 //
 
 import Foundation
 
-// todo: rename
-typealias ActionBlock<T> = (T) -> Void
-
-protocol SignalProducer: class {
-    associatedtype PU
-
-    func tell<PU>(_ arg: PU)
-}
-
-protocol SignalConsumer: class {
-    associatedtype CU
-
-    func listen<CU>(action: @escaping ActionBlock<CU>)
-}
-
-final class Signal<T>: SignalProducer, SignalConsumer {
+final class SignalT<T> {
     // MARK: - Types
 
     typealias PU = T
@@ -36,7 +21,7 @@ final class Signal<T>: SignalProducer, SignalConsumer {
 
     // MARK: - Interface
 
-    func listen<CU>(action: @escaping (CU) -> Void) {
+    func listen<CU>(action: @escaping (CU, T) -> Void) {
         actions.append(unsafeBitCast(action, to: ActionBlock<T>.self))
     }
 
@@ -47,7 +32,7 @@ final class Signal<T>: SignalProducer, SignalConsumer {
         }
 
         actions.forEach { (action: (T) -> Void) in
-            action(unboxed)
+            action(unboxed, self)
         }
     }
 
@@ -58,7 +43,7 @@ final class Signal<T>: SignalProducer, SignalConsumer {
     }
 }
 
-extension Signal where T == Void {
+extension SignalT where T == Void {
     func tell() {
         tell(())
     }

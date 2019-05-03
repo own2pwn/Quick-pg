@@ -9,7 +9,7 @@
 import Foundation
 
 protocol IViewProducer: class {
-    var onProduced: Signal<InteractiveView> { get }
+    var onProduced: SignalM<InteractiveView, ViewProducer> { get }
 
-    var onInteractionEnded: Signal<InteractiveView> { get }
+    var onInteractionEnded: SignalM<InteractiveView, ViewProducer> { get }
 }

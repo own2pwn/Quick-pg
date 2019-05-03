@@ -58,6 +58,8 @@
 		DEFB34A7227B776A00E5C625 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34A6227B776A00E5C625 /* InteractiveView.swift */; };
 		DEFB34AB227B779600E5C625 /* ViewProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AA227B779600E5C625 /* ViewProducer.swift */; };
 		DEFB34AE227B77AE00E5C625 /* IViewProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AD227B77AE00E5C625 /* IViewProducer.swift */; };
+		DEFB34B0227B785400E5C625 /* PlaygroundDockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AF227B785400E5C625 /* PlaygroundDockView.swift */; };
+		DEFB34B2227BBD3700E5C625 /* Signal+U.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34B1227BBD3700E5C625 /* Signal+U.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +179,8 @@
 		DEFB34A6227B776A00E5C625 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
 		DEFB34AA227B779600E5C625 /* ViewProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProducer.swift; sourceTree = "<group>"; };
 		DEFB34AD227B77AE00E5C625 /* IViewProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IViewProducer.swift; sourceTree = "<group>"; };
+		DEFB34AF227B785400E5C625 /* PlaygroundDockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundDockView.swift; sourceTree = "<group>"; };
+		DEFB34B1227BBD3700E5C625 /* Signal+U.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signal+U.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				DEE39E1B225E17200083406A /* Signal.swift */,
+				DEFB34B1227BBD3700E5C625 /* Signal+U.swift */,
 				DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */,
 			);
 			path = Foundation;
@@ -586,6 +591,7 @@
 				DE60B16F22620B8500FC61DB /* RightSidePanelView.swift */,
 				DE60B17322620BAE00FC61DB /* ColorPlaceholderTextField.swift */,
 				DE39FFEE226273D8006C64DB /* SidePanelTextField.swift */,
+				DEFB34AF227B785400E5C625 /* PlaygroundDockView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -770,10 +776,12 @@
 				DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
+				DEFB34B2227BBD3700E5C625 /* Signal+U.swift in Sources */,
 				DED2DBA8227812B2000C2DD2 /* UIEdgeInsets+Extension.swift in Sources */,
 				DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */,
 				DE55900B22798AA300BEA44F /* SharedCache.swift in Sources */,
 				DED2DBAA227812C7000C2DD2 /* String+Length.swift in Sources */,
+				DEFB34B0227B785400E5C625 /* PlaygroundDockView.swift in Sources */,
 				DE39FFE022627201006C64DB /* StaticPlaceholderValidatorTextField.swift in Sources */,
 				DE6B5E392277009900CE78B6 /* Const+Font.swift in Sources */,
 				DE55900422798A3E00BEA44F /* UIView+Animations.swift in Sources */,

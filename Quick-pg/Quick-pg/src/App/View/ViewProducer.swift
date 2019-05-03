@@ -12,15 +12,15 @@ import UIKit
 final class ViewProducer: EPView, IViewProducer {
     // MARK: - Interface
 
-    lazy var onProduced = Signal<InteractiveView>()
+    lazy var onProduced = SignalM<InteractiveView, ViewProducer>()
 
-    lazy var onInteractionEnded = Signal<InteractiveView>()
+    lazy var onInteractionEnded = SignalM<InteractiveView, ViewProducer>()
 
     // MARK: - Members
 
     private var state: State = .none
 
-    private var producedView: UIView?
+    private var producedView: InteractiveView?
 
     // MARK: - Touches
 
@@ -94,7 +94,7 @@ final class ViewProducer: EPView, IViewProducer {
 
     private func produce() {
         let view: InteractiveView = make()
-        onProduced.tell(view)
+        onProduced.send(view, sender: self)
 
         animate(produced: view)
     }
@@ -106,7 +106,7 @@ final class ViewProducer: EPView, IViewProducer {
     private func finish() {
         assert(producedView != nil)
 
-        onInteractionEnded.tell(producedView)
+        onInteractionEnded.send(producedView.unsafelyUnwrapped, sender: self)
         producedView = nil
     }
 

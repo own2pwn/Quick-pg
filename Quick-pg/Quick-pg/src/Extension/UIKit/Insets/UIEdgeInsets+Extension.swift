@@ -13,4 +13,12 @@ public extension UIEdgeInsets {
         left = value
         right = value
     }
+
+    func horizontally(by value: CGFloat) -> UIEdgeInsets {
+        var mutated = self
+        mutated.left = value
+        mutated.right = value
+
+        return mutated
+    }
 }
