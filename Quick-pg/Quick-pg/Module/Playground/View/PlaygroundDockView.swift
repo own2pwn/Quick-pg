@@ -67,8 +67,8 @@ final class PlaygroundDockView: EPShadowCardView {
     override func setup() {
         makeCells()
 
-        SignalA.listen(all: InteractiveView.self) { (interactiveView: InteractiveView) in
-            print("got \(interactiveView)")
+        SignalA<InteractiveView>.listen { (i: InteractiveView) in
+            print(i)
         }
     }
 

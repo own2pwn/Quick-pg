@@ -8,14 +8,31 @@
 
 import Foundation
 
-final class SignalA {
+final class SignalA<T> {
+    // MARK: - Types
+
+    typealias EventBlock = (T) -> Void
+
+    private typealias BoxedType = [AnyObserver]
+
     // MARK: - Members
 
-    private static var observers: [AnyObserver] = []
+    private static var observers: BoxedType {
+        get {
+            guard let unboxed = SharedCache.get(key: "\(type(of: self))") as? BoxedType else {
+                return BoxedType()
+            }
+
+            return unboxed
+        }
+        set {
+            SharedCache.set(newValue, for: "\(type(of: self))")
+        }
+    }
 
     // MARK: - Interface
 
-    static func tell<T>(_ sender: T, kind _: T.Type = T.self) {
+    static func tell(_ sender: T) {
         let matched: [Observer<T>] = matchingObservers()
 
         matched.forEach { (observer: Observer<T>) in
@@ -23,10 +40,8 @@ final class SignalA {
         }
     }
 
-    static func listen<T>(all kindOf: T.Type = T.self, handler: @escaping (T) -> Void) {
-        let newObserver: Observer<T> = Observer<T>(
-            listens: kindOf, action: handler
-        )
+    static func listen(handler: @escaping EventBlock) {
+        let newObserver: Observer<T> = Observer<T>(action: handler)
         observers.append(newObserver)
     }
 
@@ -44,6 +59,5 @@ final class SignalA {
 private protocol AnyObserver {}
 
 private struct Observer<T>: AnyObserver {
-    let listens: T.Type
     let action: (T) -> Void
 }
