@@ -1,5 +1,5 @@
 //
-//  Signal+U.swift
+//  Signal+M.swift
 //  Quick-pg
 //
 //  Created by Evgeniy on 03/05/2019.

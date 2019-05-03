@@ -24,6 +24,8 @@ final class InteractiveView: EPShadowView {
         UIView.animate {
             self.setShadow(InteractiveView.shadow)
         }
+
+        SignalA.tell(self)
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {

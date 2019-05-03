@@ -44,6 +44,7 @@
 		DE6B5E2E2277007300CE78B6 /* Montserrat Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE6B5E242277007300CE78B6 /* Montserrat Medium.ttf */; };
 		DE6B5E2F2277007300CE78B6 /* Montserrat SemiBold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE6B5E252277007300CE78B6 /* Montserrat SemiBold Italic.ttf */; };
 		DE6B5E392277009900CE78B6 /* Const+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6B5E382277009900CE78B6 /* Const+Font.swift */; };
+		DED26700227CA3C100BF6618 /* Signal+A.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED266FF227CA3C100BF6618 /* Signal+A.swift */; };
 		DED2DBA022781244000C2DD2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DB9F22781244000C2DD2 /* PopupView.swift */; };
 		DED2DBA522781279000C2DD2 /* Bool+Reverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA422781279000C2DD2 /* Bool+Reverse.swift */; };
 		DED2DBA8227812B2000C2DD2 /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2DBA7227812B2000C2DD2 /* UIEdgeInsets+Extension.swift */; };
@@ -59,7 +60,7 @@
 		DEFB34AB227B779600E5C625 /* ViewProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AA227B779600E5C625 /* ViewProducer.swift */; };
 		DEFB34AE227B77AE00E5C625 /* IViewProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AD227B77AE00E5C625 /* IViewProducer.swift */; };
 		DEFB34B0227B785400E5C625 /* PlaygroundDockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34AF227B785400E5C625 /* PlaygroundDockView.swift */; };
-		DEFB34B2227BBD3700E5C625 /* Signal+U.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34B1227BBD3700E5C625 /* Signal+U.swift */; };
+		DEFB34B2227BBD3700E5C625 /* Signal+M.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB34B1227BBD3700E5C625 /* Signal+M.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		DE6B5E252277007300CE78B6 /* Montserrat SemiBold Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat SemiBold Italic.ttf"; sourceTree = "<group>"; };
 		DE6B5E382277009900CE78B6 /* Const+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Const+Font.swift"; sourceTree = "<group>"; };
 		DEA7EDB122760C8400EDD0C0 /* EPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EPKit.xcodeproj; sourceTree = "<group>"; };
+		DED266FF227CA3C100BF6618 /* Signal+A.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signal+A.swift"; sourceTree = "<group>"; };
 		DED2DB9F22781244000C2DD2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DED2DBA422781279000C2DD2 /* Bool+Reverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Reverse.swift"; sourceTree = "<group>"; };
 		DED2DBA7227812B2000C2DD2 /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
@@ -180,7 +182,7 @@
 		DEFB34AA227B779600E5C625 /* ViewProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProducer.swift; sourceTree = "<group>"; };
 		DEFB34AD227B77AE00E5C625 /* IViewProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IViewProducer.swift; sourceTree = "<group>"; };
 		DEFB34AF227B785400E5C625 /* PlaygroundDockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundDockView.swift; sourceTree = "<group>"; };
-		DEFB34B1227BBD3700E5C625 /* Signal+U.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signal+U.swift"; sourceTree = "<group>"; };
+		DEFB34B1227BBD3700E5C625 /* Signal+M.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signal+M.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -561,7 +563,8 @@
 			isa = PBXGroup;
 			children = (
 				DEE39E1B225E17200083406A /* Signal.swift */,
-				DEFB34B1227BBD3700E5C625 /* Signal+U.swift */,
+				DEFB34B1227BBD3700E5C625 /* Signal+M.swift */,
+				DED266FF227CA3C100BF6618 /* Signal+A.swift */,
 				DE60B16922620B5400FC61DB /* ClosureBox<T>.swift */,
 			);
 			path = Foundation;
@@ -750,6 +753,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED26700227CA3C100BF6618 /* Signal+A.swift in Sources */,
 				DE39FFEC22627306006C64DB /* UIColor+Hex.swift in Sources */,
 				DED2DBA022781244000C2DD2 /* PopupView.swift in Sources */,
 				DE60B16E22620B7200FC61DB /* StaticPlaceholderTextField.swift in Sources */,
@@ -776,7 +780,7 @@
 				DE60B16822620B4300FC61DB /* Relay<T>.swift in Sources */,
 				DE09A1DA225DEB2C00E71E6C /* AppDelegate.swift in Sources */,
 				DEE39E23225E18320083406A /* SelectableView.swift in Sources */,
-				DEFB34B2227BBD3700E5C625 /* Signal+U.swift in Sources */,
+				DEFB34B2227BBD3700E5C625 /* Signal+M.swift in Sources */,
 				DED2DBA8227812B2000C2DD2 /* UIEdgeInsets+Extension.swift in Sources */,
 				DEE39E25225E1E540083406A /* RightSidePanelViewModel.swift in Sources */,
 				DE55900B22798AA300BEA44F /* SharedCache.swift in Sources */,

@@ -66,6 +66,10 @@ final class PlaygroundDockView: EPShadowCardView {
 
     override func setup() {
         makeCells()
+
+        SignalA.listen(all: InteractiveView.self) { (interactiveView: InteractiveView) in
+            print("got \(interactiveView)")
+        }
     }
 
     private func makeCells() {
@@ -150,7 +154,6 @@ private extension PlaygroundDockView {
         /// center into `container` coordinate space
         /// because `view`'s new superView will be `container`
         view.center = convert(sender.center, to: container)
-
         container.addSubview(view)
     }
 
