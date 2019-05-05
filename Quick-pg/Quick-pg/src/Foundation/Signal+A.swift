@@ -8,27 +8,18 @@
 
 import Foundation
 
+private protocol AnyObserver {}
+
+private struct Observer<T>: AnyObserver {
+    let action: (T) -> Void
+}
+
 final class SignalA<T> {
     // MARK: - Types
 
     typealias EventBlock = (T) -> Void
 
     private typealias BoxedType = [AnyObserver]
-
-    // MARK: - Members
-
-    private static var observers: BoxedType {
-        get {
-            guard let unboxed = SharedCache.get(key: "\(type(of: self))") as? BoxedType else {
-                return BoxedType()
-            }
-
-            return unboxed
-        }
-        set {
-            SharedCache.set(newValue, for: "\(type(of: self))")
-        }
-    }
 
     // MARK: - Interface
 
@@ -51,13 +42,22 @@ final class SignalA<T> {
         return observers.compactMap { $0 as? Observer<T> }
     }
 
+    // MARK: - Members
+
+    private static var observers: BoxedType {
+        get {
+            guard let unboxed = SharedCache.get(key: "\(type(of: self))") as? BoxedType else {
+                return BoxedType()
+            }
+
+            return unboxed
+        }
+        set {
+            SharedCache.set(newValue, for: "\(type(of: self))")
+        }
+    }
+
     // MARK: - Init
 
     private init() {}
-}
-
-private protocol AnyObserver {}
-
-private struct Observer<T>: AnyObserver {
-    let action: (T) -> Void
 }
