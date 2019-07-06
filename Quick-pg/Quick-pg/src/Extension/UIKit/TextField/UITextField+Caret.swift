@@ -18,6 +18,16 @@ public extension UITextField {
         }
         return false
     }
+
+    @discardableResult
+    func setCaret(at offset: Int) -> Bool {
+        if let newCaretPosition = position(from: beginningOfDocument, offset: offset) {
+            selectedTextRange = textRange(from: newCaretPosition, to: newCaretPosition)
+
+            return true
+        }
+        return false
+    }
 }
 
 public extension UITextField {

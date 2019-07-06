@@ -36,6 +36,23 @@ final class PlaygroundController: EYController {
         return view
     }()
 
+    private let deviceView: EPShadowView = {
+        let view = EPShadowView()
+        view.backgroundColor = #colorLiteral(red: 0.9309999943, green: 0.9462000728, blue: 0.9499999881, alpha: 1)
+
+        view.contentView.layer.cornerRadius = 4
+        view.shadow = Shadow(
+            color: #colorLiteral(red: 0.1499999464, green: 0.1499999464, blue: 0.1499999464, alpha: 1), radius: 6,
+            offset: .zero, opacity: 0.35
+        )
+
+        // view.layer.cornerRadius = 4
+        // view.layer.borderColor = #colorLiteral(red: 0.1499999464, green: 0.1499999464, blue: 0.1499999464, alpha: 1)
+        // view.layer.borderWidth = 1
+
+        return view
+    }()
+
     private let popupView: PopupView = {
         let view = PopupView()
 
@@ -63,7 +80,7 @@ final class PlaygroundController: EYController {
     }()
 
     override var views: [UIView] {
-        return [dockView]
+        return [deviceView, dockView]
     }
 
     // MARK: - Members
@@ -106,12 +123,20 @@ final class PlaygroundController: EYController {
             .marginEnd(24)
 
         layoutPopup()
+        layoutDevice()
         layoutDock()
     }
 
     private func layoutPopup() {
         popupView.layoutIfNeeded()
         popupView.pin.center()
+    }
+
+    private func layoutDevice() {
+        deviceView.pin
+            .height(812 / 1.5)
+            .width(375 / 1.5)
+            .center()
     }
 
     private func layoutDock() {
